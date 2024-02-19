@@ -12,9 +12,10 @@ LineLength:
 #rubocopで検証したくないフォルダを指定
 AllCops:
   Exclude:
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'bin/*'
-    - '**/Gemfile'
-    - 'vendor/**/*'
-    - '.git/**/*'
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+    - "**/Gemfile"
+    - "vendor/**/*"
+    - ".git/**/*"
+    - "spec/*"
