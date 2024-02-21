@@ -1,0 +1,10 @@
+<% @groups.each do |group| %>
+  <div>
+    グループ名：<%= group.name %>
+    紹介：<%= group.introduction %>
+    ユーザーの数：<%= group.users.count %>
+    <%= link_to "詳細", group_path(group) %>
+  </div>
+<% end %>
+
+<%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
