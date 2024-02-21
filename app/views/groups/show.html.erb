@@ -1,0 +1,13 @@
+<div>グループ名：<%= @group.name %></div>
+<div>紹介：<%= @group.introduction %></div>
+<% @group.users.each do |member| %>
+  <div>メンバー：<%= member.email %></div>
+<% end %>
+
+<% if @group.owner_id == current_user.id %>
+  <%= link_to "編集", edit_group_path(@group) %>
+<% elsif @group.users.include?(current_user) %>
+  <%= link_to "脱退する", group_exit_path(@group), data: { turbo_method: :delete } %>
+<% else %>
+  <%= link_to "参加する", group_join_path(@group) %>
+<% end %>
