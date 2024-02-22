@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_20_021420) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_21_110641) do
   create_table "group_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
@@ -28,6 +28,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_021420) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permits", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_permits_on_group_id"
+    t.index ["user_id"], name: "index_permits_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -42,4 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_20_021420) do
 
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"
+  add_foreign_key "permits", "groups"
+  add_foreign_key "permits", "users"
 end
