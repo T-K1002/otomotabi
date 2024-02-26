@@ -1,0 +1,9 @@
+<%= form_with model: [@group, @travel_plan], local: true do |f| %> 
+    <div class="FormCountainer">
+      <h2 class="NewTitle">旅行プラン作成<h2>
+      <div class="FormTitle"> <%= f.label :旅行タイトル %> </br> <%= f.text_field :title %> </div>
+       <div> <%= f.submit "保存" %> </div>
+        <%= link_to "キャンセル", request.referer, class: "cancel_button" %>
+      </div>
+    </div>
+  <% end %>
