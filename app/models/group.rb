@@ -3,5 +3,5 @@ class Group < ApplicationRecord
   has_many :users, through: :group_users
   belongs_to :owner, class_name: "User"
   has_many :permits, dependent: :destroy
-  has_many :trips, dependent: :destroy
+  has_many :travel_plans, dependent: :destroy
 end
