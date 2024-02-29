@@ -26,7 +26,7 @@ class TripsController < ApplicationController
 
   private
 
-  def trips
-    params.require(:trip).permit(:title)
+  def trip_params
+    params.require(:trip).permit(:title, :start_date, :end_date)
   end
 end
