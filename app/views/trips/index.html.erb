@@ -1,5 +1,5 @@
+グループ名：<%= @group.name %>
+<h2>旅行一覧</h2>
 <% @trips.each do |trip| %>
-    <div>
-      旅行名：<%= trip.title %>
-    </div>
-  <% end %>
+  <div><%= link_to trip.title, group_trip_spots_path(@group,trip) %>
+<% end %>

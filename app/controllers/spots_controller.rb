@@ -10,11 +10,6 @@ class SpotsController < ApplicationController
     @dates = @trip.start_date + 1..@trip.end_date - 1
   end
 
-  def show
-    @trip = Trip.find(params[:trip_id])
-    @spots = Spot.where(params[:trip_id])
-  end
-
   def create
     @spot = Spot.new(spot_params)
     @spot.trip_id = (params[:trip_id])
