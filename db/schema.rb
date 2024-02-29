@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_22_074945) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_27_130059) do
   create_table "group_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
@@ -37,12 +37,25 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_074945) do
     t.index ["user_id"], name: "index_permits_on_user_id"
   end
 
-  create_table "travel_plans", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "spots", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.bigint "trip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.index ["trip_id"], name: "index_spots_on_trip_id"
+  end
+
+  create_table "trips", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "group_id"
-    t.index ["group_id"], name: "index_travel_plans_on_group_id"
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.index ["group_id"], name: "index_trips_on_group_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -61,5 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_22_074945) do
   add_foreign_key "group_users", "users"
   add_foreign_key "permits", "groups"
   add_foreign_key "permits", "users"
-  add_foreign_key "travel_plans", "groups"
+  add_foreign_key "spots", "trips"
+  add_foreign_key "trips", "groups"
 end

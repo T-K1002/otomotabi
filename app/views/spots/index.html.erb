@@ -1,0 +1,36 @@
+<h2>旅行名：<%= @trip.title %></h2>
+<h3>出発日：<%= @trip.start_date %></h3>
+<% spots = Spot.where(date: @trip.start_date,trip_id: @trip.id) %>
+<% spots.each do |spot| %>
+  <div>スポット名：<%= spot.name %></div>
+  <div>旅行日：<%= spot.date %></div>
+  <div>開始時間：<%= spot.start_time %></div>
+  <div>終了時間：<%= spot.end_time %></div>
+<% end %>
+<div><%= link_to "新規", new_group_trip_spot_path(trip_date:@trip.start_date) %></div>
+
+<% @dates.each do |date| %>
+  <h3>出発日：<%= date %></h3>
+  <% spots = Spot.where(date: date,trip_id: @trip.id) %>
+  <% spots.each do |spot| %>
+    <div>スポット名：<%= spot.name %></div>
+    <div>旅行日：<%= spot.date %></div>
+    <div>開始時間：<%= spot.start_time %></div>
+    <div>終了時間：<%= spot.end_time %></div>
+  <% end %>
+<div><%= link_to "新規", new_group_trip_spot_path(trip_date:date) %></div>
+<% end %>
+
+<h3>旅行日：<%= @trip.end_date %></h3>
+<% spots = Spot.where(date: @trip.end_date,trip_id: @trip.id) %>
+<% spots.each do |spot| %>
+  <div>スポット名：<%= spot.name %></div>
+  <div>旅行日：<%= spot.date %></div>
+  <div>開始時間：<%= spot.start_time %></div>
+  <div>終了時間：<%= spot.end_time %></div>
+<% end %>
+<div><%= link_to "新規", new_group_trip_spot_path(trip_date:@trip.end_date) %></div>
+
+
+
+
