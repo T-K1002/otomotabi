@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users
+  resources :users
   resources :groups, only: [:new, :index, :create, :edit, :update, :show]
   resources :groups do
     resources :permits, only: [:index, :create, :destroy]

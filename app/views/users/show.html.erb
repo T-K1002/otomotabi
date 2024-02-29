@@ -1,0 +1,11 @@
+<h2>マイページ</h2>
+<div>メールアドレス：<%= @user.email %></div>
+<div><%= link_to "編集", edit_user_registration_path(@user) %></div>
+<h3>マイグループ</h3>
+<% @user.groups.each do |group| %>
+<%= group.name %>
+<%= link_to "旅行一覧", group_trips_path(group) %>
+<%= link_to "グループ詳細", group_path(group) %>
+<% end %>
+<h3>新しくグループに参加する</h3>
+<div><%= link_to "グループ一覧", groups_path %></div>
