@@ -1,4 +1,5 @@
 <h2>旅行名：<%= @trip.title %></h2>
+<%= link_to "旅行一覧へ", group_trips_path %>
 <h3>出発日：<%= @trip.start_date %></h3>
 <% spots = Spot.where(date: @trip.start_date,trip_id: @trip.id) %>
 <% spots.each do |spot| %>
@@ -30,6 +31,7 @@
   <div>終了時間：<%= spot.end_time %></div>
 <% end %>
 <div><%= link_to "新規", new_group_trip_spot_path(trip_date:@trip.end_date) %></div>
+
 
 
 

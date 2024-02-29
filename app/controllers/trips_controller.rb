@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.where(group_id: params[:group_id])
+    @trips = Trip.where(params[:group_id])
+    @group = Group.find(params[:group_id])
   end
 
   def show
