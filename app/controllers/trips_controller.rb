@@ -1,7 +1,11 @@
 class TripsController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @trips = Trip.where(params[:group_id])
+    @trips = Trip.where(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
+    if @group.group_users != current_user.group_users
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
   def show
