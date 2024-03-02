@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @groups = Group.all
   end
@@ -24,6 +25,9 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    if @group.owner_id != current_user.id
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
 
   def update
