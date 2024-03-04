@@ -1,3 +1,14 @@
+<h2>グループを新しく作成する</h2>
+<%= link_to "グループを作成する", new_group_path %>
+
+
+<h2>新しくグループに参加する</h2>
+<%= form_with url: search_path, local: true, method: :get do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<h2>グループ一覧</h2>
 <% @groups.each do |group| %>
   <div>
     グループ名：<%= group.name %>
