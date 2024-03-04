@@ -45,6 +45,10 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def search
+    @group = Group.find_by('name LIKE ?', "#{params[:name]}")
+  end
+
   private
 
   def group_params
