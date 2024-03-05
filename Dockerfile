@@ -1,5 +1,6 @@
 FROM ruby:3.1.4
 
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs
 RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app/Gemfile
