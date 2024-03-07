@@ -1,20 +1,17 @@
-<% if @group.present? %>
-  <%= @group.name %>に参加しますか</td>
-  <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post }  %>
-<% else %>
-  <div>該当するグループが存在しません</div>
-<% end %>
-
-<h2>もう一度グループを探す</h2>
-<%= form_with url: search_path, local: true, method: :get do |f| %>
-    <%= f.text_field :name %>
-    <%= f.submit "検索" %>
-  <% end %>
-
-
-   
-
-
- 
-   
-     
+<div class="container max-width">
+  <div>
+    <% if @group.present? %>
+      <h2 class="mt-3 md-3"><%= @group.name %>に参加します</h2>
+      <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post }, class: "btn btn-outline-secondary"%>
+    <% else %>
+      <h2 class="mt-3 md-3">グループが存在しません</h2>
+    <% end %>
+  </div>
+  <div>
+    <h2 class="mt-5 md-3">もう一度グループを探す</h2>
+    <%= form_with url: search_path, local: true, method: :get do |f| %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.submit "再検索", class: "btn btn-outline-secondary mt-3" %>
+    <% end %>
+  </div>
+</div>

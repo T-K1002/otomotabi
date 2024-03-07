@@ -1,16 +1,29 @@
-<div>グループ名：<%= @group.name %></div>
-<div>紹介：<%= @group.introduction %></div>
-<% @group.users.each do |member| %>
-  <div>メンバー：<%= member.email %></div>
-<% end %>
-
-
-<% if @group.group_users.exists?(user_id: current_user.id) %>
-  <%= link_to "脱退する", group_exit_path(@group), data: { turbo_method: :delete } %>
-<% elsif @group.permits.exists?(user_id: current_user.id) %>
-  <%= link_to '申請取消', group_permit_path(@group), data: { turbo_method: :delete } , class: "btn btn-sm btn-danger" %>
-<% else %>
-  <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post } , class: "btn btn-sm btn-success" %>
-<% end %>
-
-<%= link_to "承認待ち一覧", group_permits_path(@group) %>
+<div class="container max-width">
+  <div>
+    <h2 class="mt-3 md-3">グループページ</h2>
+    <div class="mb-3">
+      <div>グループ名</div>
+      <div class="form-control"><%= @group.name %></div>
+    </div>
+    <div class="mb-3">
+      <div>グループ紹介</div>
+      <div class="form-control"><%= @group.introduction %></div>
+    </div>
+    <div class="mb-3">
+      <div>メンバー</div>
+      <div class="form-control">
+        <% @group.users.each do |member| %>
+          <div>●<%= member.email %></div>
+        <% end %>
+      </div>
+    </div>
+    <% if @group.group_users.exists?(user_id: current_user.id) %>
+      <%= link_to "脱退する", group_exit_path(@group), data: { turbo_method: :delete }, class: "btn btn-outline-success" %>
+    <% elsif @group.permits.exists?(user_id: current_user.id) %>
+      <%= link_to '申請取消', group_permit_path(@group), data: { turbo_method: :delete } , class: "btn btn-sm btn-success" %>
+    <% else %>
+      <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post } , class: "btn btn-outline-primary" %>
+    <% end %>
+    <%= link_to "新たにグループ申請がきています", group_permits_path(@group), class: "btn btn-outline-danger" %>
+  </div>
+</div>
