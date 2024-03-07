@@ -1,19 +1,53 @@
-<h2>グループを新しく作成する</h2>
-<%= link_to "グループを作成する", new_group_path %>
-
-
-<h2>新しくグループに参加する</h2>
-<%= form_with url: search_path, local: true, method: :get do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit "検索" %>
-<% end %>
-
-<h2>グループ一覧</h2>
-<% @groups.each do |group| %>
-  <div>
-    グループ名：<%= group.name %>
-    紹介：<%= group.introduction %>
-    ユーザーの数：<%= group.users.count %>
-    <%= link_to "詳細", group_path(group) %>
+<div class="container py-4">
+  <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-bg-dark rounded-3">
+        <h2>グループを作成する</h2>
+        <p>新たな旅行グループを作成できます。グループを作成して旅行計画を立てよう</p>
+        <%= link_to "グループを作成する", new_group_path, class: "btn btn-outline-light" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+        <h2>グループに参加する</h2>
+        <p>友人が作成されているグループに参加できます。グループ名を入力しよう</p>
+        <%= form_with url: search_path, local: true, method: :get do |f| %>
+          <%= f.text_field :name, class: "form-control" %>
+          <%= f.submit "参加する", class: "btn btn-outline-secondary mt-3" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+
+  <div class="p-5 mt-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">グループ一覧</h1>
+      <p class="col-md-8 fs-4">あなたが参加しているグループが表示されます</p>
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <% @groups.each do |group| %>
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <p class="card-text"><%= group.name %></p>
+                <p class="card-text"><%= group.introduction %></p>
+                <p class="card-text"><%= group.users.count %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <%= link_to "詳細", group_path(group), class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                  <div class="btn-group">
+                    <%= link_to "旅行一覧", group_trips_path(group), class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                </div>
+                <%= link_to "新たにグループ申請がきています", group_permits_path(group), class: "btn btn-outline-danger mt-3" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>

@@ -1,11 +1,10 @@
-<h2>マイページ</h2>
-<div>メールアドレス：<%= @user.email %></div>
-<div><%= link_to "編集", edit_user_registration_path(@user) %></div>
-<h3>マイグループ</h3>
-<% @user.groups.each do |group| %>
-<%= group.name %>
-<%= link_to "旅行一覧", group_trips_path(group) %>
-<%= link_to "グループ詳細", group_path(group) %>
-<% end %>
-<h3>新しくグループに参加する</h3>
-<div><%= link_to "グループ一覧", groups_path %></div>
+<div class="container max-width">
+  <div>
+    <h2 class="mt-3 md-3">マイページ</h2>
+    <div class="mb-3">
+      <div>メールアドレス</div>
+      <div class="form-control"><%= @user.email %></div>
+    </div>
+    <%= link_to "編集", edit_user_registration_path(@user), class: "btn btn-outline-secondary" %>
+  </div>
+</div>
