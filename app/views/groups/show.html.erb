@@ -17,13 +17,14 @@
         <% end %>
       </div>
     </div>
-    <% if @group.group_users.exists?(user_id: current_user.id) %>
+    <% if @group.owner_id == current_user.id %>
+      <%= link_to "オーナー専用ページ", group_permits_path(@group), class: "btn btn-outline-danger" %>
+    <% elsif @group.group_users.exists?(user_id: current_user.id) %>
       <%= link_to "脱退する", group_exit_path(@group), data: { turbo_method: :delete }, class: "btn btn-outline-success" %>
     <% elsif @group.permits.exists?(user_id: current_user.id) %>
-      <%= link_to '申請取消', group_permit_path(@group), data: { turbo_method: :delete } , class: "btn btn-sm btn-success" %>
+      <%= link_to '加入申請取消', group_permit_path(@group), data: { turbo_method: :delete } , class: "btn btn-sm btn-success" %>
     <% else %>
       <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post } , class: "btn btn-outline-primary" %>
     <% end %>
-    <%= link_to "新たにグループ申請がきています", group_permits_path(@group), class: "btn btn-outline-danger" %>
   </div>
 </div>
