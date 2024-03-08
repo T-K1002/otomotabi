@@ -41,7 +41,7 @@
                     <%= link_to "旅行一覧", group_trips_path(group), class: "btn btn-sm btn-outline-secondary" %>
                   </div>
                 </div>
-                <% if group.owner_id == current_user.id %>
+                <% if group.owner_id == current_user.id and group.permits.exists? %>
                   <%= link_to "グループ申請がきています", group_permits_path(group), class: "btn btn-outline-danger mt-3" %>
                 <% end %>
                 </div>
