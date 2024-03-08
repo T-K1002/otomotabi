@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @groups = Group.all
+    @groups = Group.includes(:users).where(users: { id: current_user.id })
   end
 
   def show
