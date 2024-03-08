@@ -3,9 +3,9 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.where(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
-    #if @group.group_users != current_user.group_users
-      #redirect_to user_path(current_user), alert: "不正なアクセスです。"
-    #end
+    unless @group.users.include?(current_user)
+      redirect_to groups_path, alert: "不正なアクセスです。"
+    end
   end
 
   def show
@@ -17,6 +17,9 @@ class TripsController < ApplicationController
   def new
     @group = Group.find(params[:group_id])
     @trip = Trip.new
+    unless @group.users.include?(current_user)
+      redirect_to groups_path, alert: "不正なアクセスです。"
+    end
   end
 
   def create

@@ -4,17 +4,17 @@ class SpotsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @spot = Spot.new
     @trip_dates = params[:trip_date]
-    #if @trip.group.group_users != current_user.group_users
-      #redirect_to user_path(current_user), alert: "不正なアクセスです。"
-    #end
+    unless @trip.group.users.include?(current_user)
+      redirect_to groups_path, alert: "不正なアクセスです。"
+    end
   end
 
   def index
     @trip = Trip.find(params[:trip_id])
     @dates = @trip.start_date + 1..@trip.end_date - 1
-    #if @trip.group.group_users != current_user.group_users
-      #redirect_to user_path(current_user), alert: "不正なアクセスです。"
-    #end
+    unless @trip.group.users.include?(current_user)
+      redirect_to groups_path, alert: "不正なアクセスです。"
+    end
   end
 
   def create
