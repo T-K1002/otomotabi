@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :permit do
-    user { nil }
-    group { nil }
+    association :user
+    association :group
   end
 end

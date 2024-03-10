@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Permit, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#permit" do
+  let!(:permit) { create(:permit) }
+
+    it "ユーザーID、グループIDがある場合、有効である" do
+      expect(permit).to be_valid
+    end
+  end
 end
