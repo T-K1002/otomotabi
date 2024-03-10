@@ -1,5 +1,10 @@
 FactoryBot.define do
   factory :spot do
-    trip { nil }
+    name { "札幌観光" }
+    date { "2024/2/1" }
+    start_time { "7:00" }
+    end_time { "8:00" }
+
+    association :trip 
   end
 end
