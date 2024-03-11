@@ -28,7 +28,8 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to group_trips_path
     else
-      render :new
+      @group = Group.find(params[:group_id])
+      render :new, status: :unprocessable_entity
     end
   end
 
