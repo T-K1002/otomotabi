@@ -20,7 +20,7 @@
       </div>
    <% end %>
    <div class="text-center">
-     <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.end_date),class: "btn btn-outline-secondary mt-3 " %>
+     <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.start_date),class: "btn btn-outline-secondary mt-3 " %>
    </div>
   </div>
 
@@ -45,7 +45,7 @@
         </div>
       <% end %>
       <div class="text-center">
-        <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.end_date),class: "btn btn-outline-secondary mt-3 " %>
+        <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:date),class: "btn btn-outline-secondary mt-3 " %>
       </div>
     </div>
   <% end %>
