@@ -1,0 +1,22 @@
+<%= form_with model: spot, url: group_trip_spots_path, local: true do |f| %> 
+  <%= render "shared/error_message", object: f.object %>
+  <div class="mb-3">
+    <%= f.label :旅行日 %> 
+    <div class="form-control"><%= trip_dates %></div>
+    <%= f.hidden_field :date, value: trip_dates %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :旅行スポット %> 
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :開始時間 %>
+    <%= f.time_field :start_time, class: "form-control" %> 
+  </div>
+  <div class="mb-3">
+    <%= f.label :終了時間 %>
+    <%= f.time_field :end_time, class: "form-control" %> 
+  </div>
+  <%= f.submit "保存", class: "btn btn-outline-primary" %>
+  <%= link_to "キャンセル", request.referer, class: "btn btn-outline-secondary" %>
+<% end %>
