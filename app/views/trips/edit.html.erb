@@ -1,2 +1,6 @@
-<h1>Schedules#edit</h1>
-<p>Find me in app/views/schedules/edit.html.erb</p>
+<div class="container max-width">
+  <div>
+    <h2 class="mt-3 md-3">旅行プラン編集</h2>
+    <%= render "form", { group: @group, trip: @trip } %>
+  </div>
+</div>
