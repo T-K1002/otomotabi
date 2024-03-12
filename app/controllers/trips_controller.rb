@@ -8,12 +8,6 @@ class TripsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def edit
-  end
-
   def new
     @group = Group.find(params[:group_id])
     @trip = Trip.new
@@ -28,7 +22,26 @@ class TripsController < ApplicationController
     if @trip.save
       redirect_to group_trips_path
     else
-      render :new
+      @group = Group.find(params[:group_id])
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @trip = Trip.find(params[:id])
+    @group = Group.find(params[:group_id])
+    unless @trip.group.users.include?(current_user)
+      redirect_to groups_path, alert: "不正なアクセスです。"
+    end
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    if @trip.update(trip_params)
+      redirect_to group_trips_path
+    else
+      @group = Group.find(params[:group_id])
+      render :edit, status: :unprocessable_entity
     end
   end
 

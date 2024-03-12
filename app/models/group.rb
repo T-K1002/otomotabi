@@ -4,4 +4,7 @@ class Group < ApplicationRecord
   belongs_to :owner, class_name: "User"
   has_many :permits, dependent: :destroy
   has_many :trips, dependent: :destroy
+
+  validates :name, presence: true
+  validates :introduction, presence: true
 end
