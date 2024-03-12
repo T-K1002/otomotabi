@@ -11,6 +11,7 @@ class SpotsController < ApplicationController
 
   def index
     @trip = Trip.find(params[:trip_id])
+    @group = Group.find(params[:group_id])
     @dates = @trip.start_date + 1..@trip.end_date - 1
     unless @trip.group.users.include?(current_user)
       redirect_to groups_path, alert: "不正なアクセスです。"
@@ -29,6 +30,19 @@ class SpotsController < ApplicationController
   end
 
   def edit
+    @spot = Spot.find(params[:id])
+    unless @spot.trip.group.users.include?(current_user)
+      redirect_to groups_path, alert: "不正なアクセスです。"
+    end
+  end
+
+  def update
+    @spot = Spot.find(params[:id])
+    if @spot.update(spot_params)
+      redirect_to group_trip_spots_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
