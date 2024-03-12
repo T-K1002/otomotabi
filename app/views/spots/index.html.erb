@@ -14,7 +14,7 @@
               <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
             </div>
             <h4 class="text-gray-dark"><%= spot.name %></h4>
-            <a href="#">編集</a>
+            <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3 " %>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
                <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
               </div>
               <h4 class="text-gray-dark"><%= spot.name %></h4>
-              <a href="#">編集</a>
+              <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot, trip_date:date),class: "btn btn-outline-secondary mt-3 " %>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
               <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
             </div>
             <h4 class="text-gray-dark"><%= spot.name %></h4>
-            <a href="#">編集</a>
+            <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot, trip_date:@trip.end_date),class: "btn btn-outline-secondary mt-3 " %>
           </div>
         </div>
       </div>
