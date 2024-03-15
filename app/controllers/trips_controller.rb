@@ -3,6 +3,10 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.where(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
+    @prefectures = Trip.all
+    gon.visited_prefectures = @prefectures.map do |prefecture|
+      prefecture.prefecture_before_type_cast
+    end
     unless @group.users.include?(current_user)
       redirect_to groups_path, alert: "不正なアクセスです。"
     end
@@ -45,9 +49,14 @@ class TripsController < ApplicationController
     end
   end
 
+  def show
+    @prefecture = Trip.create(prefecture: params[:id].to_i)
+    @trips = Trip.where(prefecture: @prefecture.prefecture)
+  end
+
   private
 
   def trip_params
-    params.require(:trip).permit(:title, :start_date, :end_date)
+    params.require(:trip).permit(:title, :prefecture, :start_date, :end_date)
   end
 end
