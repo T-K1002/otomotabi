@@ -4,7 +4,7 @@ RSpec.describe Spot, type: :model do
   describe "#spot" do
   let!(:spot) { create(:spot) }
 
-    it "スポット名、旅行日、開始時間、終了時間がある場合、有効である" do
+    it "スポット名、旅行日、開始時間、終了時間、都道府県がある場合、有効である" do
       expect(spot).to be_valid
     end
 
@@ -31,7 +31,5 @@ RSpec.describe Spot, type: :model do
       spot.valid?
       expect(spot.errors.full_messages).to include("End time can't be blank")
     end
-
-
   end
 end
