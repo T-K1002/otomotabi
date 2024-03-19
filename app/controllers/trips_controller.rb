@@ -49,9 +49,12 @@ class TripsController < ApplicationController
     end
   end
 
-  def show
+  def prefecture
     @prefecture = Trip.create(prefecture: params[:id].to_i)
     @trips = Trip.where(prefecture: @prefecture.prefecture)
+    gon.spots = Spot.where(prefecture: @prefecture.prefecture)
+    gon.spots_latitudes = Spot.where(prefecture: @prefecture.prefecture).pluck(:latitude)
+    gon.spots_longitudes = Spot.where(prefecture: @prefecture.prefecture).pluck(:longitude)
   end
 
   private

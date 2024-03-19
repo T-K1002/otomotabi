@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_13_041140) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_19_025805) do
   create_table "group_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
@@ -45,6 +45,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_13_041140) do
     t.date "date", null: false
     t.time "start_time", null: false
     t.time "end_time", null: false
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "prefecture", null: false
     t.index ["trip_id"], name: "index_spots_on_trip_id"
   end
 

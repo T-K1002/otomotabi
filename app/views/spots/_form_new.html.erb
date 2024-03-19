@@ -10,6 +10,10 @@
     <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="mb-3">
+  <%= f.label :場所 %> 
+  <%= f.text_field :address, class: "form-control" %>
+  </div>
+  <div class="mb-3">
     <%= f.label :開始時間 %>
     <%= f.time_field :start_time, class: "form-control" %> 
   </div>
@@ -17,6 +21,7 @@
     <%= f.label :終了時間 %>
     <%= f.time_field :end_time, class: "form-control" %> 
   </div>
+  <%= f.hidden_field :prefecture, value: trip.prefecture %>
   <%= f.submit "保存", class: "btn btn-outline-primary" %>
   <%= link_to "キャンセル", request.referer, class: "btn btn-outline-secondary" %>
 <% end %>

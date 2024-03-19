@@ -4,7 +4,8 @@ FactoryBot.define do
     date { "2024/2/1" }
     start_time { "7:00" }
     end_time { "8:00" }
+    prefecture { "北海道" }
 
-    association :trip 
+    association :trip
   end
 end
