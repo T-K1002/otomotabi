@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
   get "search" => "groups#search"
+  get "prefectures/:id" => "trips#prefecture"
  
  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

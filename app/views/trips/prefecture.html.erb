@@ -1,0 +1,12 @@
+<% @trips.each do |trip| %>
+<%= trip.title %>
+<% end %>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "googlemap" %>
+<% end %>
+
+<h2>gmap</h2>
+<div id="map" style="height: 600px; width: 600px;"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&loading=async&callback=initMap"defer></script>
