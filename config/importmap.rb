@@ -9,4 +9,4 @@ pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "svgmap"
 pin "googlemap"
-pin "map"
+pin "spot_googlemap"

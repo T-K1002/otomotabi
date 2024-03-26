@@ -13,6 +13,10 @@ class SpotsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @group = Group.find(params[:group_id])
     @dates = @trip.start_date + 1..@trip.end_date - 1
+    @spots = Spot.where(trip_id: params[:trip_id])
+    gon.spots = Spot.where(trip_id: params[:trip_id]).order(:date, :start_time)
+    gon.spots_latitudes = Spot.where(trip_id: params[:trip_id]).pluck(:latitude)
+    gon.spots_longitudes = Spot.where(trip_id: params[:trip_id]).pluck(:longitude)
     unless @trip.group.users.include?(current_user)
       redirect_to groups_path, alert: "不正なアクセスです。"
     end

@@ -51,7 +51,9 @@ class TripsController < ApplicationController
 
   def prefecture
     @prefecture = Trip.create(prefecture: params[:id].to_i)
+    @group = Group.find(current_user.id)
     @trips = Trip.where(prefecture: @prefecture.prefecture)
+    @spots = Spot.where(prefecture: @prefecture.prefecture)
     gon.spots = Spot.where(prefecture: @prefecture.prefecture)
     gon.spots_latitudes = Spot.where(prefecture: @prefecture.prefecture).pluck(:latitude)
     gon.spots_longitudes = Spot.where(prefecture: @prefecture.prefecture).pluck(:longitude)
