@@ -3,9 +3,8 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.where(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
-    @prefectures = Trip.all
-    gon.visited_prefectures = @prefectures.map do |prefecture|
-      prefecture.prefecture_before_type_cast
+    gon.visited_prefectures = @trips.map do |trip|
+      trip.prefecture_before_type_cast
     end
     unless @group.users.include?(current_user)
       redirect_to groups_path, alert: "不正なアクセスです。"
@@ -23,8 +22,9 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.group_id = (params[:group_id])
+    group = Group.find(current_user.id)
     if @trip.save
-      redirect_to group_trips_path
+      redirect_to group_trip_spots_path(group, @trip)
     else
       @group = Group.find(params[:group_id])
       render :new, status: :unprocessable_entity
