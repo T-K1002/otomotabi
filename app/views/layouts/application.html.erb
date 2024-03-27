@@ -15,21 +15,35 @@
 
   <body>
     <header class="py-3 border-bottom">
-      <div class="mx-4 d-flex justify-content-between">
-        <div class="header-title">
+      <div class="mx-4 d-flex">
+        <div class="header-title me-auto">
           <%= link_to "OTOMOTABI", root_path, class: "fs-2 text-reset link-underline link-underline-opacity-0" %>
         </div>
+      
         <% if user_signed_in? %>
-          <div class="flex-shrink-0 dropdown">
-            <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-            </a>
-            <ul class="dropdown-menu text-small shadow">
-              <li><%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %></li>
-              <li><%= link_to "グループ一覧", groups_path, class: "dropdown-item" %></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+          <div class="d-flex align-items-center">
+            <div class="nav-item dropdown me-5">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                旅行一覧
+              </a>
+              <ul class="dropdown-menu">
+                <% @groups.each do |group| %>
+                  <li><%= link_to group.name, group_trips_path(group), data: {"turbo" => false}, class: "dropdown-item" %></li>
+                <% end %>
               </ul>
+            </div>
+            <div class="flex-shrink-0 dropdown">
+              <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                <li><%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= link_to "グループ一覧", groups_path, class: "dropdown-item" %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
+              </ul>
+            </div>
+          </div>
         <% else %>
         <div class="align-self-center">
           <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary" %>
