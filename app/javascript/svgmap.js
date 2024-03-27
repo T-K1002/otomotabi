@@ -1,5 +1,8 @@
-let array = [...Array(47).keys()].map(i => i + 1)
-let result1 = array.splice(gon.visited_prefectures)
+let array = []
+for (let i = 0; i < 48; i++) {
+  array.push(i)
+}
+let not_visited = array.splice(gon.visited_prefectures)
 
 svgJapan({ 
   element: "#my-map-container",
@@ -16,7 +19,7 @@ svgJapan({
 
     { id: 2,
       name: "",
-      prefs: result1,
+      prefs: not_visited,
       color: "#FFFFFF",
       active: "#FFFFFF",
     },

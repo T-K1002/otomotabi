@@ -26,5 +26,6 @@
     <% else %>
       <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post } , class: "btn btn-outline-primary" %>
     <% end %>
+    <%= link_to "戻る", request.referer, class: "btn btn-outline-secondary" %>
   </div>
 </div>
