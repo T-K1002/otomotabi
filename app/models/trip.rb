@@ -1,11 +1,13 @@
 class Trip < ApplicationRecord
   belongs_to :group
   has_many :spots, dependent: :destroy
+  has_one_attached :image
 
   validates :title, presence: true
   validates :prefecture, presence: true
   validates :start_date, presence: true
   validates :end_date, comparison: { greater_than: :start_date }
+  validates :image, content_type: { in: %w(image/jpeg image/gif image/png) }, size: { less_than_or_equal_to: 2.megabytes }
 
   enum prefecture: {
     "---": 0,

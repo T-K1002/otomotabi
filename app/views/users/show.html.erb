@@ -4,6 +4,11 @@
     <div class="mb-3">
       <div>メールアドレス</div>
       <div class="form-control"><%= @user.email %></div>
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar.variant(resize: "100x100") %>
+      <% else %>
+      <%= image_tag "user_no-image.png", size: "100x100" %>
+      <% end %>
     </div>
     <%= link_to "編集", edit_user_registration_path(@user), class: "btn btn-outline-secondary" %>
   </div>
