@@ -33,6 +33,11 @@
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control"  %>
   </div>
 
+  <div class="field mb-3">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, class: "form-control" %>
+  </div>
+
   <div class="actions mb-3">
     <%= f.submit "Update", class: "btn btn-outline-primary" %>
   </div>
