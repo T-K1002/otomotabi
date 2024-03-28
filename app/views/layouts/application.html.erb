@@ -23,18 +23,24 @@
         <% if user_signed_in? %>
           <div class="d-flex align-items-center">
             <div class="nav-item dropdown me-5">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                旅行一覧
-              </a>
-              <ul class="dropdown-menu">
-                <% @groups.each do |group| %>
-                  <li><%= link_to group.name, group_trips_path(group), data: {"turbo" => false}, class: "dropdown-item" %></li>
-                <% end %>
-              </ul>
+              <% if @groups.exists? %>
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  旅行一覧
+                </a>
+                <ul class="dropdown-menu">
+                  <% @groups.each do |group| %>
+                    <li><%= link_to group.name, group_trips_path(group), data: {"turbo" => false}, class: "dropdown-item" %></li>
+                  <% end %>
+                </ul>
+              <% end %>
             </div>
             <div class="flex-shrink-0 dropdown">
               <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar.variant(resize: "50x50") %>
+              <% else %>
+                <%= image_tag "user_no-image.png", size: "50x50" %>
+              <% end %>
               </a>
               <ul class="dropdown-menu text-small shadow">
                 <li><%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %></li>
