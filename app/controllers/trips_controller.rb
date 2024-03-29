@@ -3,6 +3,7 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.where(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
+    gon.group_id = @group.id
     gon.visited_prefectures = @trips.map do |trip|
       trip.prefecture_before_type_cast
     end
@@ -51,12 +52,12 @@ class TripsController < ApplicationController
 
   def prefecture
     @prefecture = Trip.create(prefecture: params[:id].to_i)
-    @group = Group.find(current_user.id)
+    @group = Group.find(params[:group_id])
     @trips = Trip.where(prefecture: @prefecture.prefecture, group_id: @group.id)
-    @spots = Spot.where(prefecture: @prefecture.prefecture)
-    gon.spots = Spot.where(prefecture: @prefecture.prefecture)
-    gon.spots_latitudes = Spot.where(prefecture: @prefecture.prefecture).pluck(:latitude)
-    gon.spots_longitudes = Spot.where(prefecture: @prefecture.prefecture).pluck(:longitude)
+    @spots = Spot.where(prefecture: @prefecture.prefecture, group_id: @group.id)
+    gon.spots = Spot.where(prefecture: @prefecture.prefecture, group_id: @group.id)
+    gon.spots_latitudes = Spot.where(prefecture: @prefecture.prefecture, group_id: @group.id).pluck(:latitude)
+    gon.spots_longitudes = Spot.where(prefecture: @prefecture.prefecture, group_id: @group.id).pluck(:longitude)
   end
 
   private

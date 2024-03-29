@@ -7,12 +7,13 @@ Rails.application.routes.draw do
     resources :permits, only: [:index, :create, :destroy]
     resources :group_users, only: [:create, :destroy]
     delete "exit" => "groups#exit"
+    get "prefectures/:id" => "trips#prefecture"
     resources :trips do
       resources :spots
     end
   end
   get "search" => "groups#search"
-  get "prefectures/:id" => "trips#prefecture"
+  
  
  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
