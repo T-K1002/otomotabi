@@ -22,6 +22,7 @@
     <%= f.time_field :end_time, class: "form-control" %> 
   </div>
   <%= f.hidden_field :prefecture, value: trip.prefecture %>
+  <%= f.hidden_field :group_id, value: trip.group_id %>
   <%= f.submit "保存", class: "btn btn-outline-primary" %>
   <%= link_to "キャンセル", request.referer, class: "btn btn-outline-secondary" %>
 <% end %>
