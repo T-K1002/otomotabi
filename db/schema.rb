@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_27_113126) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_28_075345) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,6 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_27_113126) do
     t.float "latitude"
     t.float "longitude"
     t.integer "prefecture", null: false
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_spots_on_group_id"
     t.index ["trip_id"], name: "index_spots_on_trip_id"
   end
 
@@ -109,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_27_113126) do
   add_foreign_key "group_users", "users"
   add_foreign_key "permits", "groups"
   add_foreign_key "permits", "users"
+  add_foreign_key "spots", "groups"
   add_foreign_key "spots", "trips"
   add_foreign_key "trips", "groups"
 end
