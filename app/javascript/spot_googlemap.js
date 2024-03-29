@@ -22,8 +22,6 @@ function initMap(){
       lng: markerData[i]['longitude']
     });
 
-    
-
     marker[i] = new google.maps.Marker({
       position: markerLatLng,
       map: map
