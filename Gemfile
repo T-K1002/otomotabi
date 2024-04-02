@@ -58,6 +58,7 @@ gem "dotenv-rails"
 gem "geocoder"
 gem "active_storage_validations"
 gem "image_processing"
+gem "ruby-openai"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
