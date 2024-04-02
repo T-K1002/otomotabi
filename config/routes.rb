@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
   get "search" => "groups#search"
+  resources :recommends, only: [:show, :new, :create]
   
  
  
