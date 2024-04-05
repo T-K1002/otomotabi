@@ -1,0 +1,26 @@
+<%= turbo_frame_tag trip do %>
+  <%= form_with model: trip, url: group_trip_path, data: { action: 'turbo:submit-end->modal#close' } do |f| %> 
+    <%= render "shared/error_message", object: f.object %>
+    <div class="mb-3">
+      <%= f.label :旅行タイトル %> 
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :旅行場所 %> 
+      <%= f.select :prefecture, Trip.prefectures.keys, {}, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :出発日 %>
+      <%= f.date_field :start_date, class: "form-control" %> 
+    </div>
+    <div class="mb-3">
+      <%= f.label :帰宅日 %>
+      <%= f.date_field :end_date, class: "form-control" %> 
+    </div>
+    <div class="mb-3">
+      <%= f.label :画像 %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+    <%= f.submit "保存", class: "btn btn-outline-primary" %>
+  <% end %>
+<% end %>

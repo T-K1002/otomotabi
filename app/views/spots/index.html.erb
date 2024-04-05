@@ -47,13 +47,13 @@
                         <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
                       </div>
                       <h4 class="text-gray-dark"><%= spot.name %></h4>
-                      <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3 " %>
+                      <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
                     </div>
                   </div>
                 </div>
               <% end %>
               <div class="text-center">
-              <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.start_date),class: "btn btn-outline-secondary mt-3 " %>
+              <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.start_date),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
               </div>
             </div>
 
@@ -72,13 +72,13 @@
                         <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
                         </div>
                         <h4 class="text-gray-dark"><%= spot.name %></h4>
-                        <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3 " %>
+                        <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
                       </div>
                     </div>
                   </div>
                 <% end %>
                 <div class="text-center">
-                  <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:date),class: "btn btn-outline-secondary mt-3 " %>
+                  <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:date),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" }  %>
                 </div>
               </div>
             <% end %>
@@ -97,13 +97,13 @@
                         <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
                       </div>
                       <h4 class="text-gray-dark"><%= spot.name %></h4>
-                      <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3 " %>
+                      <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
                     </div>
                   </div>
                 </div>
               <% end %>
               <div class="text-center">
-              <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.end_date),class: "btn btn-outline-secondary mt-3 " %>
+              <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.end_date),class: "btn btn-outline-secondary mt-3 ", data: { turbo_frame: "modal" } %>
               </div>
             </div>
           </div>             

@@ -1,13 +1,14 @@
-<%= form_with model: group, local: true do |f| %>
-  <%= render "shared/error_message", object: f.object %>
-  <div class="mb-3">
-    <%= f.label :グループ名 %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-  <div class="mb-3">
-    <%= f.label :紹介文 %>
-    <%= f.text_area :introduction, class: "form-control" %>
-  </div>
-  <%= f.submit "保存", class: "btn btn-outline-primary" %>
-  <%= link_to "キャンセル", request.referer, class: "btn btn-outline-secondary" %>
+<%= turbo_frame_tag group do %>
+  <%= form_with model: group, data: { action: 'turbo:submit-end->modal#close' } do |f| %>
+    <%= render "shared/error_message", object: f.object %>
+    <div class="mb-3">
+      <%= f.label :グループ名 %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :紹介文 %>
+      <%= f.text_area :introduction, class: "form-control" %>
+    </div>
+    <%= f.submit "保存", class: "btn btn-outline-primary" %>
+  <% end %>
 <% end %>

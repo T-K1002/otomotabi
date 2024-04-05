@@ -1,0 +1,27 @@
+<%= turbo_frame_tag group do %>
+  <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body">
+      <div class="d-flex justify-content-between">
+        <h5 class="card-text"><%= group.name %></h5>
+        <div class="btn-group">
+            <%= link_to "旅行ページへ", group_trips_path(group), data: {"turbo" => false}, class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+        <p class="card-text mt-3"><%= group.introduction %></p>
+        <div>メンバー</div>
+          <% group.users.each do |member| %>
+            <div>●<%= member.email %></div>
+          <% end %>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <div class="btn-group">
+            <%= link_to "編集", edit_group_path(group), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+          <% if group.owner_id == current_user.id and group.permits.exists? %>
+            <%= link_to "申請あり", group_permits_path(group), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

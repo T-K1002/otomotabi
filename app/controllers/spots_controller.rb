@@ -29,6 +29,7 @@ class SpotsController < ApplicationController
       redirect_to group_trip_spots_path
     else
       @trip_dates = @spot.date
+      @trip = Trip.find(params[:trip_id])
       render :new, status: :unprocessable_entity
     end
   end
