@@ -1,7 +1,9 @@
-<h3>承認待ちユーザ一覧</h3>
+<%= render "modal", title: "承認待ちユーザ一覧" do %>
   <% @permits.each do |permit| %>
-    <div>ユーザー名：<%= permit.user.email %></div>
-    <%= link_to "加入許可", group_group_users_path(permit.group, permit_id: permit.id, user_id: permit.user.id ), data: { turbo_method: :post } %>
-    <%= link_to "却下", group_group_user_path(permit.group, permit), data: { turbo_method: :delete } %>
-    <% end %>
-      
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>ユーザー名：<%= permit.user.email %></div>
+      <%= button_to "加入許可", group_group_users_path(permit.group, permit_id: permit.id, user_id: permit.user.id ),method: :post, data: { turbo: false },class: "btn btn-outline-secondary" %>
+      <%= button_to "却下", group_group_user_path(permit.group, permit), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary" %>
+    </div>
+  <% end %>
+<% end %>

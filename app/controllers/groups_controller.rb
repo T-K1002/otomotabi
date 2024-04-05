@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
     @group.owner_id = current_user.id
     @group.users << current_user
     if @group.save
-      redirect_to new_group_trip_path(@group), notice: "新しいグループを作成しました。"
+      # redirect_to group_trips_path(@group), notice: "新しいグループを作成しました。"
     else
       render :new, status: :unprocessable_entity
     end
