@@ -11,13 +11,13 @@ RSpec.describe Group, type: :model do
     it "グループ名がない場合はエラーメッセージを表示" do
       group.name = nil
       group.valid?
-      expect(group.errors.full_messages).to include("Name can't be blank")
+      expect(group.errors.added?(:name, :blank)).to be_truthy
     end
 
     it "紹介文がない場合はエラーメッセージを表示" do
       group.introduction = nil
       group.valid?
-      expect(group.errors.full_messages).to include("Introduction can't be blank")
+      expect(group.errors.added?(:introduction, :blank)).to be_truthy
     end
   end
 end
