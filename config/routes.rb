@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root to: "home#index"
   devise_for :users
   resources :users
-  resources :groups, only: [:new, :index, :create, :edit, :update, :show]
   resources :groups do
     resources :permits, only: [:index, :create, :destroy]
     resources :group_users, only: [:create, :destroy]
@@ -15,8 +14,6 @@ Rails.application.routes.draw do
   get "search" => "groups#search"
   resources :recommends, only: [:show, :new, :create]
   
- 
- 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
