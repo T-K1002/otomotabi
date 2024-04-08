@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      group: グループ
+      trip: 旅行
+      spot: スポット
+    attributes:
+      group:
+        id: ID
+        name: グループ名
+        introduction: 紹介文
+        created_at: 投稿日
+        updated_at: 更新日
+      trip:
+        id: ID
+        title: 旅行タイトル
+        prefecture: 都道府県
+        start_date: 出発日
+        end_date: 帰宅日
+        created_at: 作成日
+        updated_at: 更新日
+      spot:
+        id: ID
+        name: 旅行スポット
+        start_time: 開始時間
+        end_time: 終了時間
+        address: 旅行場所
+        created_at: 作成日
+        updated_at: 更新日
