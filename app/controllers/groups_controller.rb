@@ -39,6 +39,12 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    group = Group.find(params[:id])
+    group.destroy
+    redirect_to request.referer
+  end
+
   def exit
     @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
@@ -47,6 +53,10 @@ class GroupsController < ApplicationController
 
   def search
     @group = Group.find_by('name LIKE ?', "#{params[:name]}")
+  end
+
+  def management
+    @groups = Group.includes(:users).where(users: { id: current_user.id })
   end
 
   private

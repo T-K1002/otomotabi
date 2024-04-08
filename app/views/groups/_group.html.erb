@@ -9,10 +9,12 @@
           </div>
         </div>
         <p class="card-text mt-3"><%= group.introduction %></p>
-        <div>メンバー</div>
-          <% group.users.each do |member| %>
-            <div>●<%= member.email %></div>
+        <div class="overflow-auto" style="width:100%; height:100px; padding:0px;">
+          <div>メンバー</div>
+          <% group.group_users.each do |group_user| %>
+            <div>●<%= group_user.user.email %></div>
           <% end %>
+        </div>
         <div class="d-flex justify-content-between align-items-center mt-3">
           <div class="btn-group">
             <%= link_to "編集", edit_group_path(group), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %>

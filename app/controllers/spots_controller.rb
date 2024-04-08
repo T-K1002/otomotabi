@@ -22,6 +22,10 @@ class SpotsController < ApplicationController
     end
   end
 
+  def show
+    @spot = Spot.find(params[:id])
+  end
+
   def create
     @spot = Spot.new(spot_params)
     @spot.trip_id = (params[:trip_id])
@@ -48,6 +52,12 @@ class SpotsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    spot = Spot.find(params[:id])
+    spot.destroy
+    redirect_to request.referer
   end
 
   private
