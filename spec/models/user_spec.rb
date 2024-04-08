@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     it "メールアドレスがない場合はエラーメッセージを表示" do
       user.email = nil
       user.valid?
-      expect(user.errors.full_messages).to include("Email can't be blank")
+      expect(user.errors.added?(:email, :blank)).to be_truthy
     end
   end
 end
