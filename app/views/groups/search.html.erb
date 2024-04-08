@@ -1,9 +1,15 @@
 <%= render "modal", title: "加入確認" do %>
   <% if @group.present? %>
-    <div class="d-flex justify-content-between align-items-center">
-      <div><%= @group.name %>に参加します</div>
-      <%= button_to '加入申請', group_permits_path(@group), method: :post, data: { turbo: false }, class: "btn btn-outline-secondary"%>
-    </div>
+    <% if @group.permits.exists?(user_id: current_user.id) %>
+      加入申請済みです
+    <% elsif @group.group_users.exists?(user_id: current_user.id) %>
+      加入済みです
+    <% else %>
+      <div class="d-flex justify-content-between align-items-center">
+        <div><%= @group.name %>に参加します</div>
+        <%= button_to '加入申請', group_permits_path(@group), method: :post, data: { turbo: false }, class: "btn btn-outline-secondary"%>
+      </div>
+    <% end %>
   <% else %>
     <div>グループが存在しません</div>
   <% end %>
