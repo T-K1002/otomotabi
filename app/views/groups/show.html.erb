@@ -1,31 +1,9 @@
-<%= render "modal", title: "グループページ" do %>
-<div class="container max-width">
-  <div>
-    <div class="mb-3">
-      <div>グループ名</div>
-      <div class="form-control"><%= @group.name %></div>
-    </div>
-    <div class="mb-3">
-      <div>グループ紹介</div>
-      <div class="form-control"><%= @group.introduction %></div>
-    </div>
-    <div class="mb-3">
-      <div>メンバー</div>
-      <div class="form-control">
-        <% @group.users.each do |member| %>
-          <div>●<%= member.email %></div>
-        <% end %>
-      </div>
-    </div>
-    <% if @group.owner_id == current_user.id %>
-      <%= link_to "オーナー専用ページ", group_permits_path(@group), data: {"turbo" => false}, class: "btn btn-outline-danger" %>
-    <% elsif @group.group_users.exists?(user_id: current_user.id) %>
-      <%= link_to "脱退する", group_exit_path(@group), data: { turbo_method: :delete }, class: "btn btn-outline-success" %>
-    <% elsif @group.permits.exists?(user_id: current_user.id) %>
-      <%= link_to '加入申請取消', group_permit_path(@group), data: { turbo_method: :delete } , class: "btn btn-sm btn-success" %>
-    <% else %>
-      <%= link_to '加入申請', group_permits_path(@group), data: { turbo_method: :post } , class: "btn btn-outline-primary" %>
-    <% end %>
-  </div>
-</div>
+<% if @group.owner_id == current_user.id %>
+  <%= render "modal", title: "削除しますか？" do %>
+    <%= button_to "削除する", group_path(@group), method: :delete, data: { turbo: false }, class: "btn btn-outline-success" %>
+  <% end %>
+<% else %>
+  <%= render "modal", title: "脱退しますか？" do %>
+    <%= button_to "脱退する", group_exit_path(@group), method: :delete, data: { turbo: false }, class: "btn btn-outline-success" %>
+  <% end %>
 <% end %>

@@ -12,6 +12,10 @@ class TripsController < ApplicationController
     end
   end
 
+  def show
+    @trip = Trip.find(params[:id])
+  end
+
   def new
     @group = Group.find(params[:group_id])
     @trip = Trip.new
@@ -48,6 +52,12 @@ class TripsController < ApplicationController
       @group = Group.find(params[:group_id])
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    trip = Trip.find(params[:id])
+    trip.destroy
+    redirect_to request.referer
   end
 
   def prefecture
