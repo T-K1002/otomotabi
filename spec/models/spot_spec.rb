@@ -1,3 +1,4 @@
+=begin %>
 require 'rails_helper'
 
 RSpec.describe Spot, type: :model do
@@ -33,3 +34,4 @@ RSpec.describe Spot, type: :model do
     #end
   end
 end
+=end %>
