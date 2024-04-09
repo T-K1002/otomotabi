@@ -4,7 +4,7 @@ class Spot < ApplicationRecord
   validates :name, presence: true
   validates :date, presence: true
   validates :start_time, presence: true
-  validates :end_time, comparison: { greater_than: :start_time }
+  validates :end_time, presence: true, comparison: { greater_than: :start_time, message: "は開始時間より後にしてください" }
 
   geocoded_by :address
   after_validation :geocode

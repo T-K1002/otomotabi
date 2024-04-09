@@ -4,9 +4,9 @@ class Trip < ApplicationRecord
   has_one_attached :image
 
   validates :title, presence: true
-  validates :prefecture, presence: true
+  validates :prefecture, presence: true, exclusion: { in: ["---"], message: "を選択してください"  }
   validates :start_date, presence: true
-  validates :end_date, comparison: { greater_than: :start_date }
+  validates :end_date, presence: true, comparison: { greater_than_or_equal_to: :start_date, message: "は出発日より前にしないでください" } 
   validates :image, content_type: { in: %w(image/jpeg image/gif image/png) }, size: { less_than_or_equal_to: 2.megabytes }
 
   enum prefecture: {
