@@ -5,6 +5,7 @@ class RecommendsController < ApplicationController
 
   def create
     @recommend = Recommend.new(recommend_params)
+
     if @recommend.save
       redirect_to @recommend
     else
@@ -15,6 +16,6 @@ class RecommendsController < ApplicationController
   private
 
   def recommend_params
-    params.require(:recommend).permit(:content, :genre)
+    params.require(:recommend).permit(:content, :genre, :prefecture)
   end
 end
