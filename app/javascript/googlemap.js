@@ -7,7 +7,12 @@ const markerDataLat = gon.spots_latitudes;
 const markerDataLng = gon.spots_longitudes;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), { maxZoom: 15,});
+  map = new google.maps.Map(document.getElementById('map'), { 
+    center: {lat: gon.prefecture.latitude, lng: gon.prefecture.longitude},
+    zoom: 9,
+    maxZoom: 15,
+  });
+  if (markerData != 0){
   map.fitBounds(new google.maps.LatLngBounds(
     {
       lat: Math.min(...markerDataLat),
@@ -17,7 +22,7 @@ function initMap() {
       lat: Math.max(...markerDataLat),
       lng: Math.max(...markerDataLng),
     }
-  ));
+  ))};
 
   for (let i = 0; i < markerData.length; i++) {
     markerLatLng = new google.maps.LatLng({lat: markerData[i].latitude, lng: markerData[i].longitude}); 

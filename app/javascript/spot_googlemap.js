@@ -10,11 +10,16 @@ const markerDataLat = gon.spots_latitudes;
 const markerDataLng = gon.spots_longitudes;
 
 function initMap(){    
-  map = new google.maps.Map(document.getElementById('map_index'), { maxZoom: 15,});
+  map = new google.maps.Map(document.getElementById('map_index'), { 
+    center: {lat: gon.prefecture.latitude, lng: gon.prefecture.longitude},
+    zoom: 9,
+    maxZoom: 15,
+  });
+  if (markerData != 0){
   map.fitBounds(new google.maps.LatLngBounds(
     {lat: Math.min(...markerDataLat),lng: Math.min(...markerDataLng)},
     {lat: Math.max(...markerDataLat),lng: Math.max(...markerDataLng)}
-  ));
+  ))};
 
   for (var i = 0; i < markerData.length; i++) {
     markerLatLng = new google.maps.LatLng({
@@ -28,11 +33,11 @@ function initMap(){
     });
 
     let id = markerData[i]['id']
-    place_name[i]= markerData[i]['name'];
+    place_name[i]= markerData[i]['address'];
     place_lat[i]= markerData[i]['latitude'];
     place_lng[i]= markerData[i]['longitude'];
     infoWindow[i] = new google.maps.InfoWindow({
-      content: `${ markerData[i]['name'] }<input id= "btn" type="button" value="追加" onclick="addPlace(place_name, place_lat, place_lng, ${i})">`
+      content: `${ markerData[i]['address'] }<input id= "btn" type="button" value="追加" onclick="addPlace(place_name, place_lat, place_lng, ${i})">`
     });
     markerEvent(i);
   }
@@ -86,7 +91,7 @@ function search() {
           map: map,
           suppressMarkers : true,
           polylineOptions: { 
-            strokeColor: '#00ffdd',
+            strokeColor: '#0033FF',
             strokeOpacity: 1,
             strokeWeight: 5
           }

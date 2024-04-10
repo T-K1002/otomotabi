@@ -7,11 +7,7 @@
     <div class="col-md-6">
       <div class="h-100 p-4 text-bg-light border rounded-3">
         <h3>PLACES VISITED</h3>
-        <% if @spots.exists? %>
-          <div id="map" style="height: 500px; width: 100%;"></div>
-        <% else %>
-          <p>新しく旅行計画を作成してください。<br>登録したスポットが地図上に表示されます。</p>
-        <% end %>
+        <div id="map" style="height: 500px; width: 100%;"></div>
         <%= render "recommends/new" %>
       </div>
     </div>
@@ -51,7 +47,7 @@
               <% end %>
             </div>
          <% else %>
-          <p>旅行計画が登録されていません。<br>素敵な旅を計画しましょう。</p>
+          <p>素敵な旅を計画しましょう。<br>訪れた地点が記録されます。</p>
         <% end %>
         </div>
       </div>
