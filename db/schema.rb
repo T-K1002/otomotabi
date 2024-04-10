@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_09_022202) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_09_083121) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_022202) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "genre"
+    t.string "prefecture", null: false
   end
 
   create_table "spots", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -86,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_022202) do
     t.float "longitude"
     t.integer "prefecture", null: false
     t.bigint "group_id"
+    t.string "memo"
     t.index ["group_id"], name: "index_spots_on_group_id"
     t.index ["trip_id"], name: "index_spots_on_trip_id"
   end

@@ -1,7 +1,7 @@
 class Spot < ApplicationRecord
   belongs_to :trip
 
-  validates :name, presence: true
+  validates :address, presence: true
   validates :date, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true, comparison: { greater_than: :start_time, message: "は開始時間より後にしてください" }

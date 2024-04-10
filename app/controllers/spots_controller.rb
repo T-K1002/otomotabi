@@ -17,6 +17,7 @@ class SpotsController < ApplicationController
     gon.spots = Spot.where(trip_id: params[:trip_id]).order(:date, :start_time)
     gon.spots_latitudes = Spot.where(trip_id: params[:trip_id]).pluck(:latitude)
     gon.spots_longitudes = Spot.where(trip_id: params[:trip_id]).pluck(:longitude)
+    gon.prefecture = Spot.create(address: @trip.prefecture)
     unless @trip.group.users.include?(current_user)
       redirect_to groups_path, alert: "不正なアクセスです。"
     end
@@ -63,6 +64,6 @@ class SpotsController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:name, :address, :start_time, :end_time, :date, :prefecture, :group_id)
+    params.require(:spot).permit(:address, :memo, :start_time, :end_time, :date, :prefecture, :group_id)
   end
 end
