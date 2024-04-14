@@ -1,6 +1,7 @@
-FROM ruby:3.1.4
+FROM --platform=linux/amd64 ruby:3.1.4
 
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs
+RUN apt-get update -qq && apt-get install -y vim
 RUN mkdir /app
 WORKDIR /app
 COPY Gemfile /app/Gemfile
@@ -15,3 +16,7 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
+COPY ./start.sh /start.sh
+RUN chmod 744 /start.sh
+CMD ["sh", "/start.sh"]
