@@ -11,13 +11,20 @@ RSpec.describe Group, type: :model do
     it "グループ名がない場合はエラーメッセージを表示" do
       group.name = nil
       group.valid?
-      expect(group.errors.added?(:name, :blank)).to be_truthy
+      expect(group.errors.full_messages).to include("グループ名を入力してください")
+    end
+
+    it "同じ名前を登録できないこと" do
+      group1 = FactoryBot.create(:group)
+      group.name = group1.name
+      group.valid?
+      expect(group.errors.full_messages).to include("グループ名はすでに存在します")
     end
 
     it "紹介文がない場合はエラーメッセージを表示" do
       group.introduction = nil
       group.valid?
-      expect(group.errors.added?(:introduction, :blank)).to be_truthy
+      expect(group.errors.full_messages).to include("紹介文を入力してください")
     end
   end
 end

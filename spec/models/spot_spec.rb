@@ -1,4 +1,3 @@
-=begin %>
 require 'rails_helper'
 
 RSpec.describe Spot, type: :model do
@@ -10,28 +9,28 @@ RSpec.describe Spot, type: :model do
     end
 
     it "スポット名がない場合はエラーメッセージを表示" do
-      spot.name = nil
+      spot.address = nil
       spot.valid?
-      expect(spot.errors.added?(:name, :blank)).to be_truthy
-    end
-
-    it "旅行日がない場合はエラーメッセージを表示" do
-      spot.date = nil
-      spot.valid?
-      expect(spot.errors.added?(:date, :blank)).to be_truthy
+      expect(spot.errors.full_messages).to include("旅行場所を入力してください")
     end
 
     it "開始時間がない場合はエラーメッセージを表示" do
       spot.start_time = nil
       spot.valid?
-      expect(spot.errors.added?(:start_time, :blank)).to be_truthy
+      expect(spot.errors.full_messages).to include("開始時間を入力してください")
     end
 
-    #it "終了時間がない場合はエラーメッセージを表示" do
-      #spot.end_time = nil
-      #spot.valid?
-      #expect(spot.errors.added?(:end_time, :blank)).to be_truthy
-    #end
+    it "終了時間がない場合はエラーメッセージを表示" do
+      spot.end_time = nil
+      spot.valid?
+      expect(spot.errors.full_messages).to include("終了時間を入力してください")
+    end
+
+    it "終了時間が開始時間より前の場合はエラーメッセージを表示" do
+      spot.start_time = "9:00"
+      spot.end_time = "8:00"
+      spot.valid?
+      expect(spot.errors.full_messages).to include("終了時間は開始時間より後にしてください")
+    end
   end
 end
-=end %>
