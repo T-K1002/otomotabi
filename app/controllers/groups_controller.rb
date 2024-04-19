@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
     @group.owner_id = current_user.id
     @group.users << current_user
     if @group.save
-      # redirect_to group_trips_path(@group), notice: "新しいグループを作成しました。"
+      redirect_to groups_path, notice: "新しいグループを作成しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to groups_path, notice: "グループを編集しました。"
     else
       render :edit, status: :unprocessable_entity
     end
