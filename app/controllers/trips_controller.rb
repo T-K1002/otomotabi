@@ -14,6 +14,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @group = Group.find(params[:group_id])
   end
 
   def new
@@ -27,11 +28,10 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.group_id = (params[:group_id])
-    group = Group.find(current_user.id)
+    @group = Group.find(params[:group_id])
     if @trip.save
-      redirect_to group_trip_spots_path(group, @trip)
+      redirect_to group_trip_spots_path(@group, @trip), notice: "新しい旅行計画を作成しました。"
     else
-      @group = Group.find(params[:group_id])
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,8 +46,9 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
+    @group = Group.find(params[:group_id])
     if @trip.update(trip_params)
-      redirect_to group_trips_path
+      redirect_to "/groups/#{@group.id}/prefectures/#{@trip.prefecture_before_type_cast}", notice: "旅行計画を編集しました。"
     else
       @group = Group.find(params[:group_id])
       render :edit, status: :unprocessable_entity
@@ -55,9 +56,10 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    trip = Trip.find(params[:id])
-    trip.destroy
-    redirect_to request.referer
+    @trip = Trip.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @trip.destroy
+    redirect_to "/groups/#{@group.id}/prefectures/#{@trip.prefecture_before_type_cast}", alert: "旅行計画を削除しました。"
   end
 
   def prefecture

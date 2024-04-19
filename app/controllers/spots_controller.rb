@@ -24,6 +24,8 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:group_id])
+    @trip = Trip.find(params[:trip_id])
     @spot = Spot.find(params[:id])
   end
 
@@ -31,7 +33,7 @@ class SpotsController < ApplicationController
     @spot = Spot.new(spot_params)
     @spot.trip_id = (params[:trip_id])
     if @spot.save
-      redirect_to group_trip_spots_path
+      redirect_to group_trip_spots_path, notice: "新しい旅行計画を作成しました。"
     else
       @trip_dates = @spot.date
       @trip = Trip.find(params[:trip_id])
@@ -49,16 +51,16 @@ class SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     if @spot.update(spot_params)
-      redirect_to group_trip_spots_path
+      redirect_to group_trip_spots_path, notice: "旅行計画を編集しました。"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    spot = Spot.find(params[:id])
-    spot.destroy
-    redirect_to request.referer
+    @spot = Spot.find(params[:id])
+    @spot.destroy
+    redirect_to group_trip_spots_path, alert: "旅行計画を削除しました。"
   end
 
   private

@@ -32,7 +32,7 @@
         <div class="overflow-auto">
           <div class="container max-width">
             <h4 class="md-3 text-center"><%= @trip.title %></h4>
-            <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <div class="my-3 p-3 bg-body rounded shadow-sm", id= "start_date">
               <h6 class="border-bottom pb-2 mb-0"><%= @trip.start_date %></h6>
               <% spots = Spot.where(date: @trip.start_date,trip_id: @trip.id).order(:start_time) %>
               <% spots.each do |spot| %>
@@ -64,44 +64,45 @@
               <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:@trip.start_date),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
               </div>
             </div>
-
-            <% @dates.each do |date| %>
-              <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h6 class="border-bottom pb-2 mb-0"><%= date %></h6>
-                <% spots = Spot.where(date: date,trip_id: @trip.id).order(:start_time) %>
-                <% spots.each do |spot| %>
-                  <div class="d-flex text-body-secondary pt-2">
-                    <div class="pb-1 mb-0 small lh-sm border-bottom w-100">
-                      <div class="d-flex justify-content-between">
-                        <div>
-                        <span class="d-block"><%= spot.start_time.strftime("%H:%M")  %></span>
-                        <span class="d-block text-center">|</span>
-                        <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
-                        </div>
-                        <div>
-                          <h5 class="text-gray-dark text-center"><%= spot.address %></h5>
-                          <%= spot.memo %>
-                        </div>
-                        <div>
-                          <span class="d-block">
-                            <%= link_to "削除", group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %> 
-                          </span>
-                          <span class="d-block">
-                            <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-sm btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
-                          </span>
+            <div id= "middle_date">
+              <% @dates.each do |date| %>
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                  <h6 class="border-bottom pb-2 mb-0"><%= date %></h6>
+                  <% spots = Spot.where(date: date,trip_id: @trip.id).order(:start_time) %>
+                  <% spots.each do |spot| %>
+                    <div class="d-flex text-body-secondary pt-2">
+                      <div class="pb-1 mb-0 small lh-sm border-bottom w-100">
+                        <div class="d-flex justify-content-between">
+                          <div>
+                          <span class="d-block"><%= spot.start_time.strftime("%H:%M")  %></span>
+                          <span class="d-block text-center">|</span>
+                          <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
+                          </div>
+                          <div>
+                            <h5 class="text-gray-dark text-center"><%= spot.address %></h5>
+                            <%= spot.memo %>
+                          </div>
+                          <div>
+                            <span class="d-block">
+                              <%= link_to "削除", group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %> 
+                            </span>
+                            <span class="d-block">
+                              <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-sm btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
+                  <% end %>
+                  <div class="text-center">
+                    <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:date),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" }  %>
                   </div>
-                <% end %>
-                <div class="text-center">
-                  <%= link_to "+ スポット追加", new_group_trip_spot_path(trip_date:date),class: "btn btn-outline-secondary mt-3", data: { turbo_frame: "modal" }  %>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
 
             <% if @trip.start_date != @trip.end_date %>
-              <div class="my-3 p-3 bg-body rounded shadow-sm">
+              <div class="my-3 p-3 bg-body rounded shadow-sm", id= "end_date">
                 <h6 class="border-bottom pb-2 mb-0"><%= @trip.end_date %></h6>
                 <% spots = Spot.where(date: @trip.end_date,trip_id: @trip.id).order(:start_time) %>
                 <% spots.each do |spot| %>

@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users
   has_many :permits, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: { message: "が入力されていません。" }, uniqueness: { message: "は既に使用されています。" }
   validates :avatar, content_type: { in: %w(image/jpeg image/gif image/png) }, size: { less_than_or_equal_to: 2.megabytes }
 end

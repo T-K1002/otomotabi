@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :group do
-    name { "グループ1" }
-    introduction { "グループ1の紹介文" }
+    name { Faker::Name.name }
+    introduction { Faker::Lorem.sentence }
 
     association :owner
   end

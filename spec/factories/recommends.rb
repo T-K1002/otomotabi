@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :recommend do
-    content { "MyText" }
+    genre { Faker::Lorem.sentence }
+    prefecture { Faker::Address.city }
   end
 end
