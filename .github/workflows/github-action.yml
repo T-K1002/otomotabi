@@ -46,6 +46,8 @@ jobs:
           bundle exec rails db:migrate RAILS_ENV=test
 
       - name: Run rspec
+        env:
+          OPEN_AI_API_KEY: ${{secrets.OPEN_AI_API_KEY}}
         run: bundle exec rspec
 
   rubocop:
