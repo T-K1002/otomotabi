@@ -5,7 +5,6 @@ class RecommendsController < ApplicationController
 
   def create
     @recommend = Recommend.new(recommend_params)
-
     if @recommend.save
       redirect_to @recommend
     else
