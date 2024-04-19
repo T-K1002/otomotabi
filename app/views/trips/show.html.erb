@@ -1,5 +1,5 @@
 <%= render "modal", title: "削除しますか？" do %>
-  <%= button_to "削除する", group_trip_path(@trip), method: :delete, data: { turbo: false }, class: "btn btn-outline-success" %>
+  <%= button_to "削除する", group_trip_path(@group, @trip), method: :delete, data: { turbo: false }, class: "btn btn-outline-success" %>
 <% end %>
 
 
