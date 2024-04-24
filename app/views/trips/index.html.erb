@@ -4,16 +4,15 @@
 
 <section class="py-5 mf-3 text-center container">
   <div class="row py-lg-1">
-    <div class="col-lg-6 col-md-8 mx-auto">
+    <div class="col-lg-8 mx-auto">
       <h1 class="fw-light">Travel List</h1>
       <p class="lead text-body-secondary"><%= @group.name %></p>
       <p>
       <%= link_to "新しく旅行計画を立てる", new_group_trip_path, class: "btn btn-sm btn-outline-secondary" %>
       </p>
+      <div id="my-map-container" class="h-75 w-100"></div>
     </div>
   </div>
 </section>
-
-<div id="my-map-container"></div>
 
 <script src="https://cdn.jsdelivr.net/gh/ka215/svg-japan@main/dist/svg-japan.min.js"></script>
