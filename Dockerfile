@@ -15,8 +15,6 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
 COPY ./start.sh /start.sh
 RUN chmod 744 /start.sh
 CMD ["sh", "/start.sh"]

@@ -32,7 +32,7 @@ function initMap() {
     });
 
     infoWindow[i] = new google.maps.InfoWindow({ 
-    content: '<div class="info">' + markerData[i].name + '</div>' 
+    content: '<div class="info">' + markerData[i].address + '</div>' 
     });
 
     markerEvent(i);

@@ -24,7 +24,7 @@ RSpec.describe "Groups", type: :system do
         expect(page).to have_content(member.name)
       end
       expect(page).to have_content "編集"
-      expect(page).to have_content "旅行ページへ"
+      expect(page).to have_content "旅行一覧ページへ"
     end
 
     it "グループの編集ができる" do
@@ -40,7 +40,7 @@ RSpec.describe "Groups", type: :system do
     end
 
     it "旅行ページへ遷移する" do
-      click_on "旅行ページへ"
+      click_on "旅行一覧ページへ"
       expect(current_path).to eq group_trips_path(group)
     end
 
