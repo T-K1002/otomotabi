@@ -16,14 +16,14 @@
 
   <body>
     <header class="py-3 border-bottom">
-      <div class="mx-4 d-flex">
-        <div class="header-title me-auto">
+      <div class="mx-sm-4 mx-1 d-flex justify-content-between">
+        <div class="header-title">
           <%= link_to "OTOMOTABI", root_path, class: "fs-2 text-reset link-underline link-underline-opacity-0" %>
         </div>
       
         <% if user_signed_in? %>
           <div class="d-flex align-items-center">
-            <div class="nav-item dropdown me-5">
+            <div class="nav-item dropdown me-sm-5 me-1">
               <% if @groups.exists? %>
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   旅行一覧
@@ -53,8 +53,8 @@
           </div>
         <% else %>
         <div class="align-self-center">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary" %>
-          <%= link_to "新規作成", new_user_registration_path, class: "btn btn-outline-secondary" %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary btn-sm" %>
+          <%= link_to "新規作成", new_user_registration_path, class: "btn btn-outline-secondary btn-sm" %>
         </div>
          
           <% end %>
