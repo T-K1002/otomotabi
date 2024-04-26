@@ -12,7 +12,7 @@ RSpec.describe "Users", type: :system do
         fill_in "確認用パスワード", with: user.password_confirmation
         expect { click_on("登録する")}.to change { User.count }.by(1)
         expect(current_path).to eq groups_path
-        expect(page).to have_content "ログインに成功しました"
+        expect(page).to have_content "新規登録に成功しました。"
     end
 
     it "名前が未入力の場合、同じページへ遷移する" do
@@ -75,7 +75,7 @@ RSpec.describe "Users", type: :system do
         sign_in create(:user)
         find("#login").click
         expect(current_path).to eq groups_path
-        expect(page).to have_content "ログインに成功しました"
+        expect(page).to have_content "ログインに成功しました。"
     end
 
     it "マイページにユーザーの名前・メールアドレス、所属グループ名が表示される" do
@@ -117,8 +117,8 @@ RSpec.describe "Users", type: :system do
         fill_in "user_password", with: edit_user.password
         fill_in "user_password_confirmation", with: edit_user.password_confirmation
         expect { click_on("更新する")}.to change { User.count }.by(0)
-        expect(current_path).to eq root_path
-        expect(page).to have_content "アカウント情報を変更しました"
+        expect(current_path).to eq user_path(sample_user)
+        expect(page).to have_content "アカウントの編集に成功しました。"
     end
   end
 end
