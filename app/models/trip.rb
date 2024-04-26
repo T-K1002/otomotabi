@@ -21,4 +21,14 @@ class Trip < ApplicationRecord
     福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46,
     沖縄県: 47,
   }
+
+  def self.guest_trip(guest_group)
+    create!(title: "温泉旅") do |trip|
+      trip.prefecture = "北海道"
+      trip.start_date = "2024/4/10"
+      trip.end_date = "2024/4/12"
+      trip.group_id = guest_group.id
+      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/top.png')), filename: 'top.png')
+    end
+  end
 end

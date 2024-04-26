@@ -21,4 +21,25 @@ class Spot < ApplicationRecord
     福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46,
     沖縄県: 47,
   }
+
+  def self.guest_spot(guest_group, guest_trip)
+    create!(address: "札幌駅") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/4/10"
+      spot.memo = "お土産を買う"
+      spot.start_time = "10:00"
+      spot.end_time = "11:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "おたる水族館") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/4/10"
+      spot.memo = "イルカショーを見る！"
+      spot.start_time = "13:00"
+      spot.end_time = "15:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+  end
 end
