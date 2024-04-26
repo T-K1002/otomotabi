@@ -6,7 +6,7 @@ class OpenAi
     response = client.chat(
       parameters: {
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: "#{prefecture}で#{genre}が有名な、#{spots}以外のおすすめの旅行場所とその理由を教えてください" }],
+        messages: [{ role: 'user', content: "#{spots}を除く、#{prefecture}で#{genre}が有名な旅行場所とその理由を教えてください" }],
       }
     )
     response.dig('choices', 0, 'message', 'content')
