@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "home#index"
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
   devise_scope :user do
     post "users/guest_sign_in" => "users/sessions#guest_sign_in"
   end
@@ -16,9 +16,4 @@ Rails.application.routes.draw do
   end
   get "search" => "groups#search"
   resources :recommends, only: [:show, :new, :create]
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
