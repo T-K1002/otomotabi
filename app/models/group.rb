@@ -9,8 +9,8 @@ class Group < ApplicationRecord
   validates :introduction, presence: true
 
   def self.guest_group(guest_user)
-    create!(name: "ゲストグループ" + SecureRandom.alphanumeric(6)) do |group|
-      group.introduction = "ゲストグループにようこそ！"
+    create!(name: "ゲストグループ" + "(" + SecureRandom.alphanumeric(6) + ")") do |group|
+      group.introduction = "北海道に行きたい！"
       group.owner_id = guest_user.id
     end
   end

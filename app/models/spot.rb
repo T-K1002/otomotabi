@@ -23,19 +23,46 @@ class Spot < ApplicationRecord
   }
 
   def self.guest_spot(guest_group, guest_trip)
-    create!(address: "札幌駅") do |spot|
+    create!(address: "AOAO SAPPORO") do |spot|
       spot.prefecture = "北海道"
-      spot.date = "2024/4/10"
-      spot.memo = "お土産を買う"
+      spot.date = "2024/5/4"
+      spot.memo = "ペンギンを見る！"
       spot.start_time = "10:00"
-      spot.end_time = "11:00"
+      spot.end_time = "12:00"
       spot.group_id = guest_group.id
       spot.trip_id = guest_trip.id
     end
-    create!(address: "おたる水族館") do |spot|
+    create!(address: "サッポロビール博物館") do |spot|
       spot.prefecture = "北海道"
-      spot.date = "2024/4/10"
-      spot.memo = "イルカショーを見る！"
+      spot.date = "2024/5/4"
+      spot.memo = "お土産買う！"
+      spot.start_time = "14:00"
+      spot.end_time = "16:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "藻岩山") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/5/4"
+      spot.memo = "夜景を見に行く！"
+      spot.start_time = "19:00"
+      spot.end_time = "20:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "白い恋人パーク") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/5/5"
+      spot.memo = "お菓子体験！"
+      spot.start_time = "10:00"
+      spot.end_time = "12:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "札幌市時計台") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/5/5"
+      spot.memo = "昼食は近くで！"
       spot.start_time = "13:00"
       spot.end_time = "15:00"
       spot.group_id = guest_group.id

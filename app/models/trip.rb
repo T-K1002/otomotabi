@@ -23,12 +23,12 @@ class Trip < ApplicationRecord
   }
 
   def self.guest_trip(guest_group)
-    create!(title: "温泉旅") do |trip|
+    create!(title: "札幌観光") do |trip|
       trip.prefecture = "北海道"
-      trip.start_date = "2024/4/10"
-      trip.end_date = "2024/4/12"
+      trip.start_date = "2024/5/4"
+      trip.end_date = "2024/5/5"
       trip.group_id = guest_group.id
-      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/top.png')), filename: 'top.png')
+      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/sapporo.jpg')), filename: 'sapporo.png')
     end
   end
 end
