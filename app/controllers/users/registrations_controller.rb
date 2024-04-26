@@ -14,5 +14,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     flash[:notice] = "アカウントの編集に成功しました。"
     user_path(resource)
-   end
+  end
 end

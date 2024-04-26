@@ -16,7 +16,7 @@ class User < ApplicationRecord
       user.email = SecureRandom.alphanumeric(6) + "@" + SecureRandom.alphanumeric(6) + ".com"
       user.password = SecureRandom.urlsafe_base64
       user.guest = true
-      user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/trip_no-image.png')),filename: 'no-image.png')
+      user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/trip_no-image.png')), filename: 'no-image.png')
     end
   end
 end

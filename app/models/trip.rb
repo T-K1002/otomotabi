@@ -28,7 +28,7 @@ class Trip < ApplicationRecord
       trip.start_date = "2024/4/10"
       trip.end_date = "2024/4/12"
       trip.group_id = guest_group.id
-      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/top.png')),filename: 'top.png')
+      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/top.png')), filename: 'top.png')
     end
   end
 end
