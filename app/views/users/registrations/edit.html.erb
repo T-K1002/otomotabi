@@ -1,7 +1,7 @@
 <div class="container max-width">
   <div class="card shadow-sm mt-3">
     <div class="card-body">
-      <h5 class="mt-3 md-3">編集</h5>
+      <h5 class="md-3">編集</h5>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "users/shared/error_messages", resource: resource %>
         <div class="field mb-3">
@@ -20,16 +20,11 @@
           <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control"  %>
         </div>
         <div class="field mb-3">
-          新しい<%= f.label :password %><br /> 
-          <i>(変更しない場合は空白のままにしてください)</i>
+          新しい<%= f.label :password %>(変更する場合のみ)
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-          <% if @minimum_password_length %>
-            <em><%= @minimum_password_length %>文字以上にしてください</em>
-          <% end %>
         </div>
         <div class="field mb-3">
-          <%= f.label :password_confirmation %><br />
-          <i>(変更しない場合は空白のままにしてください)</i>
+          <%= f.label :password_confirmation %>(変更する場合のみ)
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"  %>
         </div>
         <div class="field mb-3">
