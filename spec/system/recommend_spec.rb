@@ -15,7 +15,7 @@ RSpec.describe "Recommends", type: :system do
 
     it "openaiでおすすめの旅行先を検索できる" do
       fill_in "recommend_genre", with: recommend.genre
-      expect { click_on("作成")}.to change { Recommend.count }.by(1)
+      expect { click_on("提案する")}.to change { Recommend.count }.by(1)
       visit recommend_path(recommend)
       expect(page).to have_content "おすすめの旅行先"
     end
