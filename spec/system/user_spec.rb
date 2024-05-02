@@ -86,7 +86,6 @@ RSpec.describe "Users", type: :system do
         visit user_path(sample_user)
         expect(page).to have_content sample_user.name
         expect(page).to have_content sample_user.email
-        expect(page).to have_content "編集"
         expect(page).to have_content group.name
     end
 
@@ -98,7 +97,6 @@ RSpec.describe "Users", type: :system do
         visit user_path(sample_user)
         expect(page).to have_content sample_user.name
         expect(page).to have_content sample_user.email
-        expect(page).to have_content "編集"
         expect(page).to have_content group.name
     end
 
@@ -107,7 +105,7 @@ RSpec.describe "Users", type: :system do
         edit_user = FactoryBot.build(:user)
         sign_in sample_user
         visit user_path(sample_user)
-        click_on "編集"
+        click_on "edit"
         expect(current_path).to eq edit_user_registration_path(sample_user)
         expect(find("#user_name").value).to eq(sample_user.name)
         expect(find("#user_email").value).to eq(sample_user.email)
