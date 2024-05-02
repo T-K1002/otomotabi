@@ -14,13 +14,12 @@
   </head>
 
 
-  <body>
+  <body class="d-flex flex-column vh-100">
     <header class="py-3 border-bottom">
-      <div class="mx-sm-4 mx-1 d-flex justify-content-between">
+      <div class="mx-sm-4 mx-1 d-flex justify-content-between align-items-center">
         <div class="header-title">
           <%= link_to "OTOMOTABI", root_path, class: "fs-2 text-reset link-underline link-underline-opacity-0" %>
         </div>
-      
         <% if user_signed_in? %>
           <div class="d-flex align-items-center">
             <div class="nav-item dropdown me-sm-5 me-1">
@@ -44,8 +43,8 @@
               <% end %>
               </a>
               <ul class="dropdown-menu text-small shadow">
-                <li><%= link_to "マイページ", user_path(current_user), class: "dropdown-item" %></li>
-                <li><%= link_to "グループ一覧", groups_path, class: "dropdown-item" %></li>
+                <li><%= link_to "マイページ", user_path(current_user), data: {"turbo" => false} , class: "dropdown-item" %></li>
+                <li><%= link_to "グループ一覧", groups_path, data: {"turbo" => false} , class: "dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %></li>
               </ul>
@@ -56,12 +55,14 @@
           <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary btn-sm" %>
           <%= link_to "新規作成", new_user_registration_path, class: "btn btn-outline-secondary btn-sm" %>
         </div>
-         
-          <% end %>
+        <% end %>
         </div>
       </div>
     </div>
   </header>
+  <div class="float-start ms-3 my-1">
+    <%= link_to image_tag("arrow-left-square.svg"), "javascript:history.back()" %>
+  </div>
 
   <%= turbo_frame_tag 'modal' %>
 
@@ -76,10 +77,10 @@
       <%= alert %>
     </div>
   <% end %>
-  
-  <%= yield %>
-
-  <footer class="pt-3 mt-4 mb-3 text-center border-top">
+  <main class="mb-auto">
+    <%= yield %>
+  </main>
+  <footer class="pt-3 pb-3 text-center border-top">
     &copy; 2024 OTOMOTABI
   </footer>
   </body>

@@ -1,7 +1,8 @@
 class Spot < ApplicationRecord
   belongs_to :trip
 
-  validates :address, presence: true
+  validates :address, presence: true, length: { maximum: 20 }
+  validates :memo, length: { maximum: 140 }
   validates :date, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true, comparison: { greater_than: :start_time, message: "は開始時間より後にしてください" }

@@ -1,13 +1,16 @@
 <div class="container pt-3">
+  <h5 class="mb-3">
+    〜訪れたことのない旅行先を提案します〜
+  </h5>
   <p class="mb-10">
-    まだ行ったことのない素敵な旅行先を提案します。
-  </p>
+    あなたが"おともたび"に登録していない地点の中から、旅行先を提案します。
+  <p>
   <%= form_with model: @recommend, method: :post, class: "mb-6", data: { turbo_frame: "modal" } do |f| %>
-    <%= f.label :genre, "ジャンル", class: "block text-lg mb-2" %>
-    <%= f.text_field :genre, class: "input input-bordered input-secondary w-full max-w-x mb-2" %>
+    <%= f.label :genre, "ジャンル", class: "block text-lg mr-1" %>
+    <%= f.text_field :genre, class: "input input-bordered input-secondary w-full max-w-x" %>
     <%= f.hidden_field :prefecture, value: @prefecture.prefecture %>
-    <div class="mt-4">
-      <%= f.submit "作成", class: "btn btn-primary" %>
+    <div class="mt-3">
+      <%= f.submit "提案する", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

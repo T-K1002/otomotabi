@@ -17,23 +17,22 @@ RSpec.describe "Groups", type: :system do
       expect(page).to have_http_status(200)
     end
 
-    it "グループ一覧に所属グループ名、紹介、メンバーの名前、編集・旅行ページへのリンクボタンが表示されること" do
+    it "グループ一覧に所属グループ名、紹介、メンバーの名前、旅行ページへのリンクボタンが表示されること" do
       expect(page).to have_content(group.name)
       expect(page).to have_content(group.introduction)
       group.users.each do |member|
         expect(page).to have_content(member.name)
       end
-      expect(page).to have_content "編集"
       expect(page).to have_content "旅行一覧ページへ"
     end
 
     it "グループの編集ができる" do
-      click_on "編集"
+      click_on "edit"
       expect(current_path).to eq edit_group_path(group)
       expect(find("#group_name").value).to eq(group.name)
       expect(find("#group_introduction").value).to eq(group.introduction)
-      fill_in "group_name", with: "edit_group_name"
-      fill_in "group_introduction", with: "edit_group_introduction"
+      fill_in "group_name", with: "name"
+      fill_in "group_introduction", with: "introduction"
       expect { click_on("保存")}.to change { Group.count }.by(0)
       expect(current_path).to eq groups_path
       expect(page).to have_content "グループを編集しました。"

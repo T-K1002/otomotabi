@@ -50,13 +50,13 @@ RSpec.describe "Trips", type: :system do
 
     it "旅行計画を立てることができる" do
       visit "/groups/#{group.id}/prefectures/1"
-      click_on "計画を立てる"
+      click_on "計画ページへ"
       expect(current_path).to eq group_trip_spots_path(group,trip)
     end
 
     it "旅行計画を編集できる" do
       visit "/groups/#{group.id}/prefectures/1"
-      click_on "編集"
+      click_on "edit"
       expect(current_path).to eq edit_group_trip_path(group, trip)
       expect(find("#trip_title").value).to eq(trip.title)
       expect(find("#trip_prefecture").value).to eq(trip.prefecture)
@@ -73,7 +73,7 @@ RSpec.describe "Trips", type: :system do
 
     it "旅行計画を削除できる" do
       visit "/groups/#{group.id}/prefectures/1"
-      click_on "削除"
+      click_on "delete"
       expect(current_path).to eq group_trip_path(group, trip)
       expect(page).to have_content "削除しますか？"
       expect { click_on("削除する")}.to change { Trip.count }.by(-1)

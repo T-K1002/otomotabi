@@ -11,7 +11,7 @@ RSpec.describe Spot, type: :model do
     it "スポット名がない場合はエラーメッセージを表示" do
       spot.address = nil
       spot.valid?
-      expect(spot.errors.full_messages).to include("旅行場所を入力してください")
+      expect(spot.errors.full_messages).to include("旅行スポットを入力してください")
     end
 
     it "開始時間がない場合はエラーメッセージを表示" do

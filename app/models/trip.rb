@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   has_many :spots, dependent: :destroy
   has_one_attached :image
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 15 }
   validates :prefecture, presence: true, exclusion: { in: ["---"], message: "を選択してください" }
   validates :start_date, presence: true
   validates :end_date, presence: true, comparison: { greater_than_or_equal_to: :start_date, message: "は出発日より前にしないでください" }
