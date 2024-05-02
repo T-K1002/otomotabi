@@ -2,14 +2,12 @@
   <%= javascript_import_module_tag "spot_googlemap" %>
 <% end %>
 
-<div class="container py-4">
+<div class="container pb-4">
   <div class="row align-items-md-stretch">
     <div class="col-lg-6">
       <div class="h-100 p-4 text-bg-light border rounded-3">
         <h3>PLACES VISITED</h3>
-        <% if @spots.exists? %>
           <p>新しくスポットを登録してください。<br>登録したスポットが地図上に表示されます。</p>
-        <% end %>
         <div id="map_index" style="height: 500px; width: 100%;"></div>
         <div class="p-1 mb-1 bg-body text-body">
           <div class="d-flex flex-low">
@@ -22,7 +20,8 @@
         </div>
         <ul id = "display-list" class = "display-group"></ul>
         <%= button_tag "ルート検索", id: "btn-search", class: "btn btn-primary", onclick: "search()" %>
-        <%= button_tag "リセット", id: "btn-search2", class: "btn btn-primary", onclick: "reset()" %>   
+        <%= button_tag "リセット", id: "btn-search2", class: "btn btn-primary", onclick: "reset()" %>
+        <p class="mt-3 mb-0">ルートを検索するには、ピンをクリックして地点の追加をしてください。</p>
       </div>
     </div>
 
@@ -45,15 +44,15 @@
                         <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
                       </div>
                       <div>
-                        <h5 class="text-gray-dark text-center"><%= spot.address %></h5>
-                        <div class="text-gray-dark text-center"><%= spot.memo %></div>
+                        <h5 class="text-gray-dark text-center"><%= truncate(spot.address, length: 9) %></h5>
+                        <div class="text-gray-dark text-center"><%= truncate(spot.memo, length: 10) %></div>
                       </div> 
                       <div>
                         <span class="d-block">
-                          <%= link_to "削除", group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %> 
+                          <%= link_to image_tag("trash.svg"), group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, id: "delete"  %> 
                         </span>
                         <span class="d-block">
-                          <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-sm btn-outline-secondary", data: { turbo_frame: "modal" } %>
+                          <%= link_to image_tag("pencil-square.svg"), edit_group_trip_spot_path(@group, @trip, spot), data: { turbo_frame: "modal" }, id: "edit" %>
                         </span>
                       </div>
                     </div>
@@ -79,15 +78,15 @@
                           <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
                           </div>
                           <div>
-                            <h5 class="text-gray-dark text-center"><%= spot.address %></h5>
-                            <div class="text-gray-dark text-center"><%= spot.memo %></div>
+                            <h5 class="text-gray-dark text-center"><%= truncate(spot.address, length: 9) %></h5>
+                            <div class="text-gray-dark text-center"><%= truncate(spot.memo, length: 10) %></div>
                           </div>
                           <div>
                             <span class="d-block">
-                              <%= link_to "削除", group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %> 
+                              <%= link_to image_tag("trash.svg"), group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, id: "delete"  %> 
                             </span>
                             <span class="d-block">
-                              <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-sm btn-outline-secondary mt-3", data: { turbo_frame: "modal" } %>
+                              <%= link_to image_tag("pencil-square.svg"), edit_group_trip_spot_path(@group, @trip, spot), data: { turbo_frame: "modal" }, id: "edit" %>
                             </span>
                           </div>
                         </div>
@@ -115,15 +114,15 @@
                           <span class="d-block"><%= spot.end_time.strftime("%H:%M")  %></span>
                         </div>
                         <div>
-                          <h5 class="text-gray-dark text-center"><%= spot.address %></h5>
-                          <div class="text-gray-dark text-center"><%= spot.memo %></div>
+                          <h5 class="text-gray-dark text-center"><%= truncate(spot.address, length: 9) %></h5>
+                          <div class="text-gray-dark text-center"><%= truncate(spot.memo, length: 10) %></div>
                         </div> 
                         <div>
                           <span class="d-block">
-                            <%= link_to "削除", group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, class: "btn btn-sm btn-outline-secondary" %> 
+                            <%= link_to image_tag("trash.svg"), group_trip_spot_path(@group,@trip,spot), data: { turbo_frame: "modal" }, id: "delete" %> 
                           </span>
                           <span class="d-block">
-                            <%= link_to "編集", edit_group_trip_spot_path(@group, @trip, spot),class: "btn btn-sm btn-outline-secondary", data: { turbo_frame: "modal" } %>
+                            <%= link_to image_tag("pencil-square.svg"), edit_group_trip_spot_path(@group, @trip, spot), data: { turbo_frame: "modal" }, id: "edit" %>
                           </span>
                         </div>
                       </div>
