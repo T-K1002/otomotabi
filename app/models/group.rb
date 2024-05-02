@@ -5,8 +5,8 @@ class Group < ApplicationRecord
   has_many :permits, dependent: :destroy
   has_many :trips, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
-  validates :introduction, presence: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
+  validates :introduction, presence: true, length: { maximum: 15 }
 
   def self.guest_group(guest_user)
     create!(name: "ゲストグループ" + "(" + SecureRandom.alphanumeric(6) + ")") do |group|
