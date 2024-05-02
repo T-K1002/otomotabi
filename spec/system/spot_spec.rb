@@ -39,7 +39,7 @@ RSpec.describe "Spots", type: :system do
     it "出発日の旅行スポットを編集" do
       within "#start_date" do
         expect(page).to have_content trip.start_date
-        click_on "編集"
+        click_on "edit"
       end
       expect(current_path).to eq edit_group_trip_spot_path(group, trip, start_date_spot)
       expect(page).to have_content trip.start_date
@@ -59,7 +59,7 @@ RSpec.describe "Spots", type: :system do
     it "出発日の旅行スポットを削除" do
       within "#start_date" do
         expect(page).to have_content trip.start_date
-        click_on "削除"
+        click_on "delete"
       end
       expect(current_path).to eq group_trip_spot_path(group, trip, start_date_spot)
       expect(page).to have_content "削除しますか？"
@@ -86,7 +86,7 @@ RSpec.describe "Spots", type: :system do
     it "中間日の旅行スポットを編集" do
       within "#middle_date" do
         expect(page).to have_content spot.date
-        click_on "編集", match: :first
+        click_on "edit", match: :first
       end
       expect(current_path).to eq edit_group_trip_spot_path(group, trip, spot)
       expect(page).to have_content spot.date
@@ -106,7 +106,7 @@ RSpec.describe "Spots", type: :system do
     it "中間日の旅行スポットを削除" do
       within "#middle_date" do
         expect(page).to have_content spot.date
-        click_on "削除"
+        click_on "delete"
       end
       expect(current_path).to eq group_trip_spot_path(group, trip, spot)
       expect(page).to have_content "削除しますか？"
@@ -134,7 +134,7 @@ RSpec.describe "Spots", type: :system do
     it "帰宅日の旅行スポットを編集" do
       within "#end_date" do
         expect(page).to have_content trip.end_date
-        click_on "編集", match: :first
+        click_on "edit", match: :first
       end
       expect(current_path).to eq edit_group_trip_spot_path(group, trip, end_date_spot)
       expect(page).to have_content trip.end_date
@@ -154,7 +154,7 @@ RSpec.describe "Spots", type: :system do
     it "帰宅日の旅行スポットを削除" do
       within "#end_date" do
         expect(page).to have_content end_date_spot.date
-        click_on "削除"
+        click_on "delete"
       end
       expect(current_path).to eq group_trip_spot_path(group, trip, end_date_spot)
       expect(page).to have_content "削除しますか？"
