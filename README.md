@@ -36,4 +36,7 @@
 ・おすすめ旅行スポットの検索(OpenAI API)<br>
 ・レスポンシブ対応(スマホ対応済み)<br>
 
+### ER図
+<img width="911" alt="ER図" src="https://github.com/T-K1002/otomotabi/assets/147247751/6dba30e6-bc25-4a55-9a4e-8f6d826b7e30">
+
 
