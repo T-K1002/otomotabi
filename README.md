@@ -1,24 +1,39 @@
-# README
+# OTOMOTABI
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### サービス概要
 
-Things you may want to cover:
+旅行計画を作成し、グループで共有ができるアプリケーションです。作成した旅行計画は旅の記録として保存することができます。<br>
+使えばつかうほど楽しくなる機能①<br>
+訪れた都道府県は日本地図に色がついていきます。日本地図制覇したいあなたへ。<br>
+使えば使うほど楽しくなる機能②<br>
+記録した旅行スポット以外に限定した、おすすめの旅行スポットの検索ができます。<br>
 
-* Ruby version
+### 使用技術一覧
+・Ruby 3.1.4<br>
+・Rails 7.0.8<br>
+・MYSQL 8.0<br>
+・Bootstrap5<br>
+・Docker<br>
+・HEROKU<br>
+・AWS S3<br>
+・GitHub Actions<br>
+・Rspec<br>
+・Rubocop<br>
+・Google Maps API<br>
+・OpenAI API<br>
 
-* System dependencies
+### 機能一覧
+・ユーザー登録、ログイン機能(divise)<br>
+・ゲストログイン機能<br>
+・画像投稿機能(active storage, AWS S3)<br>
+・グループ作成、更新、削除機能<br>
+・グループ加入申請、承諾機能<br>
+・旅行プランの作成、更新、削除、グループ共有機能<br>
+・旅行スポットの作成、更新、削除、グループ共有機能<br>
+・旅行スポットの位置情報取得、map表示(Google Maps API, Geocoder)<br>
+・旅行スポットのルート検索(Google Maps API)<br>
+・登録した都道府県を日本地図上で色付け(SVG Japan)<br>
+・おすすめ旅行スポットの検索(OpenAI API)<br>
+・レスポンシブ対応(スマホ対応済み)<br>
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
