@@ -40,7 +40,7 @@ URL
 
 | 旅行プラン作成 |　旅行スポット追加 |
 | ---- | ---- |
-| ![Top画面](/docs/img/app-view/welcome_1.1.png) | ![ログイン画面](/docs/img/app-view/login_1.1.png) |
+| <img width="1440" alt="top4" src="https://github.com/T-K1002/otomotabi/assets/147247751/76ebe9e6-1d8b-4250-8a68-dac55db42f81"> | ![ログイン画面](/docs/img/app-view/login_1.1.png) |
 | 旅行情報を入力し、旅行プランを作成します。 | 旅行プランに、旅行スポットの追加をしていきます。 |
 
 | 登録した旅行場所を表示 |　おすすめ旅行先検索 |
