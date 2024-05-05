@@ -4,7 +4,7 @@ class Recommend < ApplicationRecord
   private
 
   def create_recommend
-    spots = Spot.where(prefecture: prefecture).pluck(:name)
+    spots = Spot.where(prefecture: prefecture).pluck(:address)
     recommend = OpenAi.generate_recommend(prefecture, genre, spots)
     self.content = recommend
   end
