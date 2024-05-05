@@ -1,6 +1,6 @@
 # OTOMOTABI
 
-URL
+URL(レスポンシブ対応済み)
 
 <img width="1395" alt="トップ" src="https://github.com/T-K1002/otomotabi/assets/147247751/1bf65e57-9227-47f7-bef7-3f1c9a28c708">
 
