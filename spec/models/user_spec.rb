@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "#user" do
-  let!(:user) { create(:user) }
+    let!(:user) { create(:user) }
 
     it "名前、メールアドレス、パスワードがある場合、有効である" do
       expect(user).to be_valid
@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors.full_messages).to include("名前は既に使用されています。")
     end
-    
+
     it "メールアドレスがない場合はエラーメッセージを表示" do
       user.email = nil
       user.valid?
@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
     end
 
     it "@のないメールアドレスを登録できないこと" do
-      user.email = Faker::Lorem.characters(number: 10, min_alpha: 10) 
+      user.email = Faker::Lorem.characters(number: 10, min_alpha: 10)
       user.valid?
       expect(user.errors.full_messages).to include("メールアドレスは有効でありません。")
     end
@@ -53,8 +53,8 @@ RSpec.describe User, type: :model do
     end
 
     it "パスワードと確認パスワードが一致しないと登録できないこと" do
-      user.password = Faker::Lorem.characters(number: 7) 
-      user.password_confirmation =  Faker::Lorem.characters(number: 6) 
+      user.password = Faker::Lorem.characters(number: 7)
+      user.password_confirmation = Faker::Lorem.characters(number: 6)
       user.valid?
       expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
     end

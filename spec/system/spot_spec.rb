@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "Spots", type: :system do
   describe "#spot" do
-    let!(:user){ create(:user)}
-    let!(:group){ create(:group, owner_id: user.id)}
-    let!(:group_user){ create(:group_user, user: user, group: group)}
-    let!(:trip){ create(:trip, group_id: group.id)}
-    let!(:spot){ create(:spot, group_id: group.id, trip_id: trip.id)}
-    let!(:start_date_spot){ create(:spot, group_id: group.id, trip_id: trip.id, date: trip.start_date)}
-    let!(:end_date_spot){ create(:spot, group_id: group.id, trip_id: trip.id, date: trip.end_date)}
-    
+    let!(:user) { create(:user) }
+    let!(:group) { create(:group, owner_id: user.id) }
+    let!(:group_user) { create(:group_user, user: user, group: group) }
+    let!(:trip) { create(:trip, group_id: group.id) }
+    let!(:spot) { create(:spot, group_id: group.id, trip_id: trip.id) }
+    let!(:start_date_spot) { create(:spot, group_id: group.id, trip_id: trip.id, date: trip.start_date) }
+    let!(:end_date_spot) { create(:spot, group_id: group.id, trip_id: trip.id, date: trip.end_date) }
 
     before do
       sign_in user
@@ -31,7 +30,7 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: spot.memo
       fill_in "spot_start_time", with: spot.start_time
       fill_in "spot_end_time", with: spot.end_time
-      expect { click_on("保存")}.to change { Spot.count }.by(1)
+      expect { click_on("保存") }.to change { Spot.count }.by(1)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "新しい旅行計画を作成しました。"
     end
@@ -51,7 +50,7 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: "edit_spot_memo"
       fill_in "spot_start_time", with: "10:00"
       fill_in "spot_end_time", with: "11:00"
-      expect { click_on("保存")}.to change { Spot.count }.by(0)
+      expect { click_on("保存") }.to change { Spot.count }.by(0)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "旅行計画を編集しました。"
     end
@@ -63,14 +62,14 @@ RSpec.describe "Spots", type: :system do
       end
       expect(current_path).to eq group_trip_spot_path(group, trip, start_date_spot)
       expect(page).to have_content "削除しますか？"
-      expect { click_on("削除する")}.to change { Spot.count }.by(-1)
+      expect { click_on("削除する") }.to change { Spot.count }.by(-1)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "旅行計画を削除しました。"
     end
 
     it "中間日に新しい旅行スポットを追加" do
       within "#middle_date" do
-      expect(page).to have_content spot.date
+        expect(page).to have_content spot.date
         click_on "スポット追加", match: :first
       end
       expect(current_path).to eq new_group_trip_spot_path(group, trip)
@@ -78,7 +77,7 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: spot.memo
       fill_in "spot_start_time", with: spot.start_time
       fill_in "spot_end_time", with: spot.end_time
-      expect { click_on("保存")}.to change { Spot.count }.by(1)
+      expect { click_on("保存") }.to change { Spot.count }.by(1)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "新しい旅行計画を作成しました。"
     end
@@ -98,7 +97,7 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: "edit_spot_memo"
       fill_in "spot_start_time", with: "10:00"
       fill_in "spot_end_time", with: "11:00"
-      expect { click_on("保存")}.to change { Spot.count }.by(0)
+      expect { click_on("保存") }.to change { Spot.count }.by(0)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "旅行計画を編集しました。"
     end
@@ -110,7 +109,7 @@ RSpec.describe "Spots", type: :system do
       end
       expect(current_path).to eq group_trip_spot_path(group, trip, spot)
       expect(page).to have_content "削除しますか？"
-      expect { click_on("削除する")}.to change { Spot.count }.by(-1)
+      expect { click_on("削除する") }.to change { Spot.count }.by(-1)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "旅行計画を削除しました。"
     end
@@ -126,7 +125,7 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: spot.memo
       fill_in "spot_start_time", with: spot.start_time
       fill_in "spot_end_time", with: spot.end_time
-      expect { click_on("保存")}.to change { Spot.count }.by(1)
+      expect { click_on("保存") }.to change { Spot.count }.by(1)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "新しい旅行計画を作成しました。"
     end
@@ -146,7 +145,7 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: "edit_spot_memo"
       fill_in "spot_start_time", with: "10:00"
       fill_in "spot_end_time", with: "11:00"
-      expect { click_on("保存")}.to change { Spot.count }.by(0)
+      expect { click_on("保存") }.to change { Spot.count }.by(0)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "旅行計画を編集しました。"
     end
@@ -158,7 +157,7 @@ RSpec.describe "Spots", type: :system do
       end
       expect(current_path).to eq group_trip_spot_path(group, trip, end_date_spot)
       expect(page).to have_content "削除しますか？"
-      expect { click_on("削除する")}.to change { Spot.count }.by(-1)
+      expect { click_on("削除する") }.to change { Spot.count }.by(-1)
       expect(current_path).to eq group_trip_spots_path(group, trip)
       expect(page).to have_content "旅行計画を削除しました。"
     end

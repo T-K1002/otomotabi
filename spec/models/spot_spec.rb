@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Spot, type: :model do
   describe "#spot" do
-  let!(:spot) { create(:spot) }
+    let!(:spot) { create(:spot) }
 
     it "スポット名、旅行日、開始時間、終了時間、都道府県がある場合、有効である" do
       expect(spot).to be_valid
