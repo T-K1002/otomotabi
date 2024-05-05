@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Groups", type: :system do
   describe "#group" do
-    let!(:user){ create(:user)}
-    let!(:group){ create(:group, owner_id: user.id)}
-    let!(:group_user){ create(:group_user, user: user, group: group)}
-    let!(:onother_user){ create(:user)}
-    let!(:onother_group_user){ create(:group_user, user: onother_user, group: group )}
-   
+    let!(:user) { create(:user) }
+    let!(:group) { create(:group, owner_id: user.id) }
+    let!(:group_user) { create(:group_user, user: user, group: group) }
+    let!(:onother_user) { create(:user) }
+    let!(:onother_group_user) { create(:group_user, user: onother_user, group: group) }
+
     before do
       sign_in user
       visit groups_path
@@ -33,7 +33,7 @@ RSpec.describe "Groups", type: :system do
       expect(find("#group_introduction").value).to eq(group.introduction)
       fill_in "group_name", with: "name"
       fill_in "group_introduction", with: "introduction"
-      expect { click_on("保存")}.to change { Group.count }.by(0)
+      expect { click_on("保存") }.to change { Group.count }.by(0)
       expect(current_path).to eq groups_path
       expect(page).to have_content "グループを編集しました。"
     end
@@ -49,11 +49,10 @@ RSpec.describe "Groups", type: :system do
       group = FactoryBot.build(:group)
       fill_in "group_name", with: group.name
       fill_in "group_introduction", with: group.introduction
-      expect { click_on("保存")}.to change { Group.count }.by(1)
+      expect { click_on("保存") }.to change { Group.count }.by(1)
       expect(current_path).to eq groups_path
       expect(page).to have_content "新しいグループを作成しました。"
     end
-
 
     it "未参加のグループに参加申請ができる" do
       created_group = FactoryBot.create(:group)
@@ -61,7 +60,7 @@ RSpec.describe "Groups", type: :system do
       click_on "参加する"
       expect(current_path).to eq search_path
       expect(page).to have_content "#{created_group.name}に参加します"
-      expect { click_on("加入申請")}.to change { Permit.count }.by(1)
+      expect { click_on("加入申請") }.to change { Permit.count }.by(1)
       expect(current_path).to eq groups_path
     end
 
