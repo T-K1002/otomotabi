@@ -1,24 +1,89 @@
-# README
+# OTOMOTABI
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+URL(レスポンシブ対応済み)
 
-Things you may want to cover:
+<img width="1395" alt="トップ" src="https://github.com/T-K1002/otomotabi/assets/147247751/1bf65e57-9227-47f7-bef7-3f1c9a28c708">
 
-* Ruby version
+### サービス概要
 
-* System dependencies
+旅行計画を作成し、グループで共有ができるアプリケーションです。作成した旅行計画は旅の記録として保存することができます。<br>
 
-* Configuration
+従来の旅行アプリと差別化し、使えば使うほど楽しみが増える機能を搭載しました。<br>
+機能①：訪れた都道府県は日本地図上で色がついていくので、訪れた都道府県が一目でわかります。都道府県制覇におすすめです！<br>
+機能②：訪れたことのない旅行場所に絞って、おすすめの旅行スポット検索ができます。使えば使うほど、レアな旅行場所が見つかるかもしれません！<br>
 
-* Database creation
+### 開発背景
 
-* Database initialization
+このアプリは、家族にクライアントになってもらい、開発したものになります。<br>
+初めて作成するアプリということもあり、家族と共に使えるものを作成したいという思いがありました。<br>
+また、相手はあくまで家族ですが、要望を聞き開発をするということが少しでも実務に近い形になるのではないかと考え実践しました。<br>
 
-* How to run the test suite
+家族に聞き取りした内容と実現した機能は以下の通りになります。<br>
+・これから家族旅行にたくさん行きたい → 思い出を貯めることができる旅行アプリの作成<br>
+・家族で旅行計画を作成したい → グループ機能を搭載し、旅行計画の共同編集機能を実装<br>
+・47都道府県すべてに行ってみたい → 訪れた都道府県を日本地図上で色付けし可視化<br>
+・近場で旅行に行く際、行ったことのある場所が多い場合に行き先を探すのに困る → 訪れたことのない場所に限定して、おすすめの旅行先を検索(OpenAi使用)<br>
 
-* Services (job queues, cache servers, search engines, etc.)
+以上を主要な機能の軸として開発を始めました。<br>その後も聞き取りを繰り返し、機能を改善・追加しました。<br>
 
-* Deployment instructions
+追加した機能の一例は以下の通りです。<br>
+・旅行計画を立てる際に、旅行場所間の移動時間が知りたい → 移動時間がわかるルート検索機能を追加(google map api使用)<br>
+・都道府県ごとに訪れた旅行先が一気にわかるようにしたい　→ 都道府県ごとのページを作成し、訪れた旅行先一覧をmapにピンで表示<br>
 
-* ...
+実現したい機能をどういう方法で実装するのかということには頭を悩ましましたが、良い開発経験になりました。
+
+### 主な使用方法
+
+| ログイン |　グループ作成 |
+| ---- | ---- |
+| <img width="1440" alt="top6" src="https://github.com/T-K1002/otomotabi/assets/147247751/5ba351e1-4dfb-4655-a837-f54a5dffb3ea"> | <img width="1440" alt="top3" src="https://github.com/T-K1002/otomotabi/assets/147247751/5cfb57b8-9ea2-48d0-83e4-d03be445a457"> |
+|  メールアドレスとパスワードでの認証機能を実装しました。<br>ゲストログイン機能も搭載しています。 | 旅行グループを作成します。<br>既に作成されているグループに、加入申請を送ることもできます。 |
+
+| 旅行プラン作成 |　旅行スポット追加 |
+| ---- | ---- |
+| <img width="1440" alt="top4" src="https://github.com/T-K1002/otomotabi/assets/147247751/76ebe9e6-1d8b-4250-8a68-dac55db42f81"> | <img width="1410" alt="top5" src="https://github.com/T-K1002/otomotabi/assets/147247751/c6f95578-820a-429d-b970-6e0cff7c348f"> |
+| 旅行情報を入力し、旅行プランを作成します。<br>旅行のイメージに応じた画像を挿入することができます。 | 旅行プランに、旅行スポットの追加をしていきます。<br>追加した旅行スポットの位置が、map上に表示されます。 |
+
+| 登録した旅行場所を表示 |　おすすめ旅行先検索 |
+| ---- | ---- |
+| <img width="1419" alt="top1" src="https://github.com/T-K1002/otomotabi/assets/147247751/b871bd4b-a904-4d96-b63c-796caaec4b17"> | <img width="1440" alt="top2" src="https://github.com/T-K1002/otomotabi/assets/147247751/17cf6078-4954-4f84-b236-76693a9e5f36"> |
+| 登録した旅行場所が都道府県ごとに表示されます。<br>訪れた都道府県に日本地図上で色付けがされます。| 登録した旅行スポットを除いたおすすめの旅行先を検索できます。<br>旅行先のジャンルを選択することもできます。 |
+
+### 機能一覧
+
+・ユーザー登録、ログイン機能(divise)<br>
+・ゲストログイン機能<br>
+・画像投稿機能(active storage, AWS S3)<br>
+・グループ作成、更新、削除機能<br>
+・グループ加入申請、承諾機能<br>
+・旅行プランの作成、更新、削除、グループ共有機能<br>
+・旅行スポットの作成、更新、削除、グループ共有機能<br>
+・旅行スポットの位置情報取得、map表示(Google Maps API, Geocoder)<br>
+・旅行スポットのルート検索(Google Maps API)<br>
+・登録した都道府県を日本地図上で色付け(SVG Japan)<br>
+・おすすめ旅行スポットの検索(OpenAI API)<br>
+・レスポンシブ対応(スマホ対応済み)<br>
+
+### 使用技術一覧
+・Ruby 3.1.4<br>
+・Rails 7.0.8<br>
+・MYSQL 8.0<br>
+・Bootstrap5<br>
+・Docker<br>
+・HEROKU<br>
+・AWS S3<br>
+・GitHub Actions<br>
+・Rspec<br>
+・Rubocop<br>
+・Google Maps API<br>
+・OpenAI API<br>
+
+### ER図
+<img width="911" alt="ER図" src="https://github.com/T-K1002/otomotabi/assets/147247751/6dba30e6-bc25-4a55-9a4e-8f6d826b7e30">
+
+### 今後実装したいもの
+・グループ加入申請の通知機能<br>
+・他のユーザーが作成した旅行プランの閲覧機能<br>
+・公共機関でのルート検索<br>
+
+
