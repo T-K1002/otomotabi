@@ -35,7 +35,8 @@ URL
 ### 主な使い方
 | ログイン |　グループ作成 |
 | ---- | ---- |
-| ![Top画面](/docs/img/app-view/welcome_1.1.png) | ![ログイン画面](/docs/img/app-view/login_1.1.png) |
+| <img width="1417" alt="top6" src="https://github.com/T-K1002/otomotabi/assets/147247751/d04c589e-5116-4d47-aca7-add315d4828b"> | 
+![ログイン画面](/docs/img/app-view/login_1.1.png) |
 |  メールアドレスとパスワードでの認証機能を実装しました。<br>ゲストログイン機能も搭載しています。 | 旅行グループを作成します。<br>既に作成されているグループに、加入申請を送ることができます。 |
 
 | 旅行プラン作成 |　旅行スポット追加 |
