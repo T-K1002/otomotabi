@@ -30,5 +30,19 @@ class Trip < ApplicationRecord
       trip.group_id = guest_group.id
       trip.image.attach(io: File.open(Rails.root.join('app/assets/images/sapporo.jpg')), filename: 'sapporo.png')
     end
+    create!(title: "弾丸野球ツアー") do |trip|
+      trip.prefecture = "北海道"
+      trip.start_date = "2024/5/21"
+      trip.end_date = "2024/5/21"
+      trip.group_id = guest_group.id
+      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/esukon.jpg')), filename: 'sapporo.png')
+    end
+    create!(title: "大阪旅行") do |trip|
+      trip.prefecture = "大阪府"
+      trip.start_date = "2024/8/1"
+      trip.end_date = "2024/8/3"
+      trip.group_id = guest_group.id
+      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/tutenkaku.jpg')), filename: 'sapporo.png')
+    end
   end
 end

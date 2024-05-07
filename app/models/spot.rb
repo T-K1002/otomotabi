@@ -31,7 +31,7 @@ class Spot < ApplicationRecord
       spot.start_time = "10:00"
       spot.end_time = "12:00"
       spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
+      spot.trip_id = guest_trip.id - 2
     end
     create!(address: "サッポロビール博物館") do |spot|
       spot.prefecture = "北海道"
@@ -40,7 +40,7 @@ class Spot < ApplicationRecord
       spot.start_time = "14:00"
       spot.end_time = "16:00"
       spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
+      spot.trip_id = guest_trip.id - 2
     end
     create!(address: "藻岩山") do |spot|
       spot.prefecture = "北海道"
@@ -49,7 +49,7 @@ class Spot < ApplicationRecord
       spot.start_time = "19:00"
       spot.end_time = "20:00"
       spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
+      spot.trip_id = guest_trip.id - 2
     end
     create!(address: "白い恋人パーク") do |spot|
       spot.prefecture = "北海道"
@@ -58,7 +58,7 @@ class Spot < ApplicationRecord
       spot.start_time = "10:00"
       spot.end_time = "12:00"
       spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
+      spot.trip_id = guest_trip.id - 2
     end
     create!(address: "札幌市時計台") do |spot|
       spot.prefecture = "北海道"
@@ -66,6 +66,87 @@ class Spot < ApplicationRecord
       spot.memo = "昼食は近くで！"
       spot.start_time = "13:00"
       spot.end_time = "15:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id - 2
+    end
+    create!(address: "新千歳空港") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/5/21"
+      spot.memo = "ラーメン道場で昼食！"
+      spot.start_time = "11:00"
+      spot.end_time = "12:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id - 1
+    end
+    create!(address: "JR北広島駅") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/5/21"
+      spot.memo = "球場まで徒歩20分"
+      spot.start_time = "12:30"
+      spot.end_time = "13:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id - 1
+    end
+    create!(address: "エスコンフィールド") do |spot|
+      spot.prefecture = "北海道"
+      spot.date = "2024/5/21"
+      spot.memo = "ユニフォーム忘れない！"
+      spot.start_time = "14:00"
+      spot.end_time = "18:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id - 1
+    end
+    create!(address: "通天閣") do |spot|
+      spot.prefecture = "大阪府"
+      spot.date = "2024/8/1"
+      spot.memo = "ビリケンさんと写真！"
+      spot.start_time = "10:00"
+      spot.end_time = "12:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "なんばグランド花月") do |spot|
+      spot.prefecture = "大阪府"
+      spot.date = "2024/8/1"
+      spot.memo = "すっちー出演！"
+      spot.start_time = "15:00"
+      spot.end_time = "18:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "心斎橋") do |spot|
+      spot.prefecture = "大阪府"
+      spot.date = "2024/8/1"
+      spot.memo = "夕食は串カツ！"
+      spot.start_time = "19:00"
+      spot.end_time = "20:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "あべのハルカス") do |spot|
+      spot.prefecture = "大阪府"
+      spot.date = "2024/8/2"
+      spot.memo = "景色堪能！"
+      spot.start_time = "10:00"
+      spot.end_time = "12:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "海遊館") do |spot|
+      spot.prefecture = "大阪府"
+      spot.date = "2024/8/2"
+      spot.memo = "ジンベイザメ見る！"
+      spot.start_time = "14:00"
+      spot.end_time = "16:00"
+      spot.group_id = guest_group.id
+      spot.trip_id = guest_trip.id
+    end
+    create!(address: "USJ") do |spot|
+      spot.prefecture = "大阪府"
+      spot.date = "2024/8/3"
+      spot.memo = "グッズ忘れない！"
+      spot.start_time = "9:00"
+      spot.end_time = "20:00"
       spot.group_id = guest_group.id
       spot.trip_id = guest_trip.id
     end
