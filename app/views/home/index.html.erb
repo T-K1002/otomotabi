@@ -2,8 +2,12 @@
   <div class="container-fluid p-sm-5">
     <h1 class="display-5 fw-bold ms-sm-5" style= "letter-spacing: 0.1em;">おともたび</h1>
     <p class="col-md-8 fs-4 ms-sm-5">旅行計画を共有できるアプリケーション</p>
-    <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-primary btn-lg ms-sm-5 mt-2",data: { "turbo-method": :post } %>
-    <h6 class="mb-0 mt-2 ms-sm-5">※ゲストログインでは、</br>ログアウト後に保存はされません。</h6>
+    <% if user_signed_in? %>
+      <%= link_to "グループ一覧へ", groups_path, class: "btn btn-primary btn-lg ms-sm-5 mt-2 mb-2" %>
+    <% else%>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-primary btn-lg ms-sm-5 mt-2",data: { "turbo-method": :post } %>
+      <h6 class="mb-0 mt-2 ms-sm-5">※ゲストログインでは、</br>ログアウト後に保存はされません。</h6>
+    <% end%>
   </div>
 </div>
 <div class="container marketing">
@@ -66,3 +70,5 @@
     </div>
   <% end%>
 </div>
+
+<img src="https://otomotabi-development.s3.ap-northeast-1.amazonaws.com/03wkq00fx5amml2frd9wnuta8q4j">
