@@ -9,7 +9,7 @@ class Spot < ApplicationRecord
   validates :end_time, presence: true, comparison: { greater_than: :start_time, message: "は開始時間より後にしてください" }
 
   geocoded_by :address
-  after_validation :geocode
+  before_validation :geocode
 
   enum prefecture: {
     "---": 0,
