@@ -4,7 +4,7 @@ class GroupUsersController < ApplicationController
     @permit = Permit.find(params[:permit_id])
     @group_user = GroupUser.create(user_id: @permit.user_id, group_id: params[:group_id])
     @permit.destroy
-    redirect_to request.referer
+    redirect_to request.referer, notice: "グループへの参加を承認しました"
   end
 
   def destroy
