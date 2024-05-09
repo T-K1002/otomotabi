@@ -23,12 +23,35 @@ class Trip < ApplicationRecord
   }
 
   def self.guest_trip(guest_group)
-    create!(title: "札幌観光") do |trip|
-      trip.prefecture = "北海道"
-      trip.start_date = "2024/5/4"
-      trip.end_date = "2024/5/5"
-      trip.group_id = guest_group.id
-      trip.image.attach(io: File.open(Rails.root.join('app/assets/images/sapporo.jpg')), filename: 'sapporo.png')
-    end
+    insert_all([
+      {
+        title: "札幌観光",
+        prefecture: "北海道",
+        start_date: "2024/5/4",
+        end_date: "2024/5/5",
+        group_id: guest_group.id,
+      },
+      {
+        title: "夏の絶景旅行",
+        prefecture: "北海道",
+        start_date: "2024/8/1",
+        end_date: "2024/8/3",
+        group_id: guest_group.id,
+      },
+      {
+        title: "大阪旅行",
+        prefecture: "大阪府",
+        start_date: "2024/8/1",
+        end_date: "2024/8/3",
+        group_id: guest_group.id,
+      },
+      {
+        title: "阿智村星空旅行",
+        prefecture: "長野県",
+        start_date: "2024/9/11",
+        end_date: "2024/9/12",
+        group_id: guest_group.id,
+      },
+    ])
   end
 end

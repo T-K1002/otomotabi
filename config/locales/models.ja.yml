@@ -24,6 +24,7 @@ ja:
         start_time: 開始時間
         end_time: 終了時間
         address: 旅行スポット
+        latitude: 旅行スポット
         memo: メモ
         created_at: 作成日
         updated_at: 更新日

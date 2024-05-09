@@ -6,7 +6,8 @@ class Users::SessionsController < Devise::SessionsController
       guest_user = User.guest
       guest_group = Group.guest_group(guest_user)
       GroupUser.guest_group_user(guest_user, guest_group)
-      guest_trip = Trip.guest_trip(guest_group)
+      Trip.guest_trip(guest_group)
+      guest_trip = Trip.where(group_id: guest_group.id)
       Spot.guest_spot(guest_group, guest_trip)
       sign_in guest_user
       redirect_to groups_path, notice: "ゲストユーザーとしてログインしました。"
