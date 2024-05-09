@@ -1,6 +1,7 @@
 class Spot < ApplicationRecord
   belongs_to :trip
 
+  validates :latitude, presence: { message: "が存在しません" }
   validates :address, presence: true, length: { maximum: 20 }
   validates :memo, length: { maximum: 140 }
   validates :date, presence: true
@@ -24,131 +25,457 @@ class Spot < ApplicationRecord
   }
 
   def self.guest_spot(guest_group, guest_trip)
-    create!(address: "AOAO SAPPORO") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/4"
-      spot.memo = "ペンギンを見る！"
-      spot.start_time = "10:00"
-      spot.end_time = "12:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 2
+    guest_trip1 = guest_trip.select { |trip| trip.title == "札幌観光" }.first
+    guest_trip2 = guest_trip.select { |trip| trip.title == "夏の絶景旅行" }.first
+    guest_trip3 = guest_trip.select { |trip| trip.title == "大阪旅行" }.first
+    guest_trip4 = guest_trip.select { |trip| trip.title == "阿智村星空旅行" }.first
+    threads = []
+    threads << Thread.new do
+      guest_trip1.image.attach(io: File.open(Rails.root.join('app/assets/images/tokeidai.jpg')), filename: 'tokeidai.jpg')
     end
-    create!(address: "サッポロビール博物館") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/4"
-      spot.memo = "お土産買う！"
-      spot.start_time = "14:00"
-      spot.end_time = "16:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 2
+    threads << Thread.new do
+      guest_trip2.image.attach(io: File.open(Rails.root.join('app/assets/images/tokachidake.jpg')), filename: 'tokachidake.jpg')
     end
-    create!(address: "藻岩山") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/4"
-      spot.memo = "夜景を見に行く！"
-      spot.start_time = "19:00"
-      spot.end_time = "20:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 2
+    threads << Thread.new do
+      guest_trip3.image.attach(io: File.open(Rails.root.join('app/assets/images/tsutenkaku.jpg')), filename: 'tsutenkaku.jpg')
     end
-    create!(address: "白い恋人パーク") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/5"
-      spot.memo = "お菓子体験！"
-      spot.start_time = "10:00"
-      spot.end_time = "12:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 2
+    threads << Thread.new do
+      guest_trip4.image.attach(io: File.open(Rails.root.join('app/assets/images/achimura.jpg')), filename: 'achimura.jpg')
     end
-    create!(address: "札幌市時計台") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/5"
-      spot.memo = "昼食は近くで！"
-      spot.start_time = "13:00"
-      spot.end_time = "15:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 2
-    end
-    create!(address: "新千歳空港") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/21"
-      spot.memo = "ラーメン道場で昼食！"
-      spot.start_time = "11:00"
-      spot.end_time = "12:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 1
-    end
-    create!(address: "JR北広島駅") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/21"
-      spot.memo = "球場まで徒歩20分"
-      spot.start_time = "12:30"
-      spot.end_time = "13:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 1
-    end
-    create!(address: "エスコンフィールド") do |spot|
-      spot.prefecture = "北海道"
-      spot.date = "2024/5/21"
-      spot.memo = "ユニフォーム忘れない！"
-      spot.start_time = "14:00"
-      spot.end_time = "18:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id - 1
-    end
-    create!(address: "通天閣") do |spot|
-      spot.prefecture = "大阪府"
-      spot.date = "2024/8/1"
-      spot.memo = "ビリケンさんと写真！"
-      spot.start_time = "10:00"
-      spot.end_time = "12:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
-    end
-    create!(address: "なんばグランド花月") do |spot|
-      spot.prefecture = "大阪府"
-      spot.date = "2024/8/1"
-      spot.memo = "すっちー出演！"
-      spot.start_time = "15:00"
-      spot.end_time = "18:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
-    end
-    create!(address: "心斎橋") do |spot|
-      spot.prefecture = "大阪府"
-      spot.date = "2024/8/1"
-      spot.memo = "夕食は串カツ！"
-      spot.start_time = "19:00"
-      spot.end_time = "20:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
-    end
-    create!(address: "あべのハルカス") do |spot|
-      spot.prefecture = "大阪府"
-      spot.date = "2024/8/2"
-      spot.memo = "景色堪能！"
-      spot.start_time = "10:00"
-      spot.end_time = "12:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
-    end
-    create!(address: "海遊館") do |spot|
-      spot.prefecture = "大阪府"
-      spot.date = "2024/8/2"
-      spot.memo = "ジンベイザメ見る！"
-      spot.start_time = "14:00"
-      spot.end_time = "16:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
-    end
-    create!(address: "USJ") do |spot|
-      spot.prefecture = "大阪府"
-      spot.date = "2024/8/3"
-      spot.memo = "グッズ忘れない！"
-      spot.start_time = "9:00"
-      spot.end_time = "20:00"
-      spot.group_id = guest_group.id
-      spot.trip_id = guest_trip.id
-    end
+    threads.each(&:join)
+    insert_all([
+      {
+        address: "新千歳空港",
+        prefecture: "北海道",
+        date: "2024/5/4",
+        memo: "10:30到着",
+        start_time: "10:30",
+        end_time: "11:00",
+        latitude: 42.78809662219266,
+        longitude: 141.6817226541292,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "札幌市時計台",
+        prefecture: "北海道",
+        date: "2024/5/4",
+        memo: "昼食は近くで！",
+        start_time: "11:30",
+        end_time: "12:30",
+        latitude: 43.062731373985955,
+        longitude: 141.3534502098798,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "サッポロビール博物館",
+        prefecture: "北海道",
+        date: "2024/5/4",
+        memo: "お土産買う！",
+        start_time: "14:00",
+        end_time: "16:00",
+        latitude: 43.07159247006721,
+        longitude: 141.36891239638842,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "藻岩山",
+        prefecture: "北海道",
+        date: "2024/5/4",
+        memo: "夜景を見に行く！",
+        start_time: "19:00",
+        end_time: "20:00",
+        latitude: 43.02460740745088,
+        longitude: 141.32224634895084,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "白い恋人パーク",
+        prefecture: "北海道",
+        date: "2024/5/5",
+        memo: "お菓子体験！",
+        start_time: "10:00",
+        end_time: "12:00",
+        latitude: 43.08912579748907,
+        longitude: 141.27173638289761,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "AOAO SAPPORO",
+        prefecture: "北海道",
+        date: "2024/5/5",
+        memo: "ペンギンを見る！",
+        start_time: "13:00",
+        end_time: "15:00",
+        latitude: 43.05795127229511,
+        longitude: 141.35358365405997,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "新千歳空港",
+        prefecture: "北海道",
+        date: "2024/5/5",
+        memo: "17:30出発",
+        start_time: "16:30",
+        end_time: "17:30",
+        latitude: 42.78809662219266,
+        longitude: 141.6817226541292,
+        group_id: guest_group.id,
+        trip_id: guest_trip1.id,
+      },
+      {
+        address: "旭川空港",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "レンタカーを借りる",
+        start_time: "10:30",
+        end_time: "11:00",
+        latitude: 43.90588674762218,
+        longitude: 142.52150800857862,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "パッチワークの路",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "北西の丘展望公園でランチ",
+        start_time: "11:00",
+        end_time: "12:00",
+        latitude: 43.63081907879668,
+        longitude: 142.42831719650067,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "青い池",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "売店でアイス！",
+        start_time: "12:30",
+        end_time: "13:00",
+        latitude: 43.49362086989962,
+        longitude: 142.61422673697024,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "白ひげの滝",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "駐車場は白金温泉観光センター",
+        start_time: "13:10",
+        end_time: "13:30",
+        latitude: 43.474780456154555,
+        longitude: 142.63942808300047,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "十勝岳 望岳台",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "展望台で景色を楽しむ！",
+        start_time: "13:40",
+        end_time: "14:00",
+        latitude: 43.44600674829081,
+        longitude: 142.65014345231157,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "四季彩の丘",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "牧場の入場料500円",
+        start_time: "14:30",
+        end_time: "16:00",
+        latitude: 43.5293439014187,
+        longitude: 142.4650609388236,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "ニングルテラス",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "手作り体験ができる！",
+        start_time: "17:00",
+        end_time: "18:00",
+        latitude: 43.323438484530875,
+        longitude: 142.3563533541567,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "新富良野プリンスホテル",
+        prefecture: "北海道",
+        date: "2024/8/1",
+        memo: "19:00チェックイン",
+        start_time: "19:00",
+        end_time: "20:00",
+        latitude: 43.323291392039486,
+        longitude: 142.35427059093035,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "カンパーナ六花亭",
+        prefecture: "北海道",
+        date: "2024/8/2",
+        memo: "バターサンド買う！",
+        start_time: "9:15",
+        end_time: "10:00",
+        latitude: 43.36458846792939,
+        longitude: 142.3770779369637,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "ファーム富田",
+        prefecture: "北海道",
+        date: "2024/8/2",
+        memo: "ラベンダーアイス！",
+        start_time: "10:30",
+        end_time: "11:30",
+        latitude: 43.419467547996064,
+        longitude: 142.428187288435,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "星野リゾート トマム",
+        prefecture: "北海道",
+        date: "2024/8/2",
+        memo: "ミナミナビーチへ",
+        start_time: "14:00",
+        end_time: "18:00",
+        latitude: 43.065664432896675,
+        longitude: 142.62363397168383,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "星野リゾート トマム ザ･タワー",
+        prefecture: "北海道",
+        date: "2024/8/2",
+        memo: "19:00チェックイン",
+        start_time: "18:00",
+        end_time: "19:00",
+        latitude: 43.065664432896675,
+        longitude: 142.62363397168383,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "星野リゾート トマム 雲海テラス",
+        prefecture: "北海道",
+        date: "2024/8/3",
+        memo: "5:00起き!",
+        start_time: "6:00",
+        end_time: "7:30",
+        latitude: 43.065664432896675,
+        longitude: 142.62363397168383,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "新千歳空港",
+        prefecture: "北海道",
+        date: "2024/8/3",
+        memo: "11:30飛行機",
+        start_time: "09:30",
+        end_time: "11:30",
+        latitude: 42.78809662219266,
+        longitude: 141.6817226541292,
+        group_id: guest_group.id,
+        trip_id: guest_trip2.id,
+      },
+      {
+        address: "通天閣",
+        prefecture: "大阪府",
+        date: "2024/8/1",
+        memo: "ビリケンさんと写真！",
+        start_time: "10:00",
+        end_time: "11:00",
+        latitude: 34.79237825818095,
+        longitude: 135.52803040247142,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "道頓堀",
+        prefecture: "大阪府",
+        date: "2024/8/1",
+        memo: "たこ焼き食べる！",
+        start_time: "12:00",
+        end_time: "14:00",
+        latitude: 34.668883997081416,
+        longitude: 135.5031050314751,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "なんばグランド花月",
+        prefecture: "大阪府",
+        date: "2024/8/1",
+        memo: "すっちー出演！",
+        start_time: "15:00",
+        end_time: "18:00",
+        latitude: 34.66514571161259,
+        longitude: 135.50365559598097,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "心斎橋",
+        prefecture: "大阪府",
+        date: "2024/8/1",
+        memo: "夕食は串カツ！",
+        start_time: "19:00",
+        end_time: "20:00",
+        latitude: 34.67353169747409,
+        longitude: 135.5009884282826,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "あべのハルカス",
+        prefecture: "大阪府",
+        date: "2024/8/2",
+        memo: "景色堪能！",
+        start_time: "10:00",
+        end_time: "12:00",
+        latitude: 34.64626475337358,
+        longitude: 135.51348782481654,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "海遊館",
+        prefecture: "大阪府",
+        date: "2024/8/2",
+        memo: "ジンベイザメ見る！",
+        start_time: "14:00",
+        end_time: "16:00",
+        latitude: 34.6546946826355,
+        longitude: 135.4289537671445,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "なにわ食いしんぼ横丁",
+        prefecture: "大阪府",
+        date: "2024/8/2",
+        memo: "肉まんは絶対食べる！",
+        start_time: "17:00",
+        end_time: "19:00",
+        latitude: 34.65640530556303,
+        longitude: 135.4302374825867,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "USJ",
+        prefecture: "大阪府",
+        date: "2024/8/3",
+        memo: "グッズ忘れない！",
+        start_time: "9:00",
+        end_time: "18:00",
+        latitude: 34.66935968428531,
+        longitude: 135.4328010515387,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "ユニバーサル・シティウォーク",
+        prefecture: "大阪府",
+        date: "2024/8/3",
+        memo: "夕食はここで",
+        start_time: "18:00",
+        end_time: "19:00",
+        latitude: 34.66935968428531,
+        longitude: 135.4328010515387,
+        group_id: guest_group.id,
+        trip_id: guest_trip3.id,
+      },
+      {
+        address: "そば勝縁",
+        prefecture: "長野県",
+        date: "2024/9/11",
+        memo: "看板メニューは天ぷらそば!",
+        start_time: "12:00",
+        end_time: "13:00",
+        latitude: 35.447202137462796,
+        longitude: 137.71973906548322,
+        group_id: guest_group.id,
+        trip_id: guest_trip4.id,
+      },
+      {
+        address: "おやき工房えんまん",
+        prefecture: "長野県",
+        date: "2024/9/11",
+        memo: "じゃがバター味あり!",
+        start_time: "14:0",
+        end_time: "15:00",
+        latitude: 35.455682598654185,
+        longitude: 137.71688162501013,
+        group_id: guest_group.id,
+        trip_id: guest_trip4.id,
+      },
+      {
+        address: "昼神温泉 ユルイの宿 恵山",
+        prefecture: "長野県",
+        date: "2024/9/11",
+        memo: "17:00チェックイン",
+        start_time: "17:00",
+        end_time: "19:00",
+        latitude: 35.457255982420385,
+        longitude: 137.71375728593407,
+        group_id: guest_group.id,
+        trip_id: guest_trip4.id,
+      },
+      {
+        address: "天空の楽園 日本一の星空ツアー",
+        prefecture: "長野県",
+        date: "2024/9/11",
+        memo: "入場料2600円",
+        start_time: "20:00",
+        end_time: "22:00",
+        latitude: 35.46673552239051,
+        longitude: 137.67000012508348,
+        group_id: guest_group.id,
+        trip_id: guest_trip4.id,
+      },
+      {
+        address: "ひるがみの森",
+        prefecture: "長野県",
+        date: "2024/9/12",
+        memo: "昼はBBQ!",
+        start_time: "10:00",
+        end_time: "12:00",
+        latitude: 35.45392495732124,
+        longitude: 137.713228338501,
+        group_id: guest_group.id,
+        trip_id: guest_trip4.id,
+      },
+      {
+        address: "湯ったりーな昼神",
+        prefecture: "長野県",
+        date: "2024/9/12",
+        memo: "温泉！タオルお忘れなく!",
+        start_time: "13:00",
+        end_time: "14:00",
+        latitude: 35.456179823107135,
+        longitude: 137.71548680738303,
+        group_id: guest_group.id,
+        trip_id: guest_trip4.id,
+      },
+    ])
   end
 end
