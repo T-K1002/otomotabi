@@ -30,7 +30,9 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: spot.memo
       fill_in "spot_start_time", with: spot.start_time
       fill_in "spot_end_time", with: spot.end_time
-      expect { click_on("保存") }
+      expect { click_on("保存") }.to change { Spot.count }.by(1)
+      expect(current_path).to eq group_trip_spots_path(group, trip)
+      expect(page).to have_content "新しい旅行計画を作成しました。"
     end
 
     it "出発日の旅行スポットを編集" do
@@ -75,7 +77,9 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: spot.memo
       fill_in "spot_start_time", with: spot.start_time
       fill_in "spot_end_time", with: spot.end_time
-      expect { click_on("保存") }
+      expect { click_on("保存") }.to change { Spot.count }.by(1)
+      expect(current_path).to eq group_trip_spots_path(group, trip)
+      expect(page).to have_content "新しい旅行計画を作成しました。"
     end
 
     it "中間日の旅行スポットを編集" do
@@ -121,7 +125,9 @@ RSpec.describe "Spots", type: :system do
       fill_in "spot_memo", with: spot.memo
       fill_in "spot_start_time", with: spot.start_time
       fill_in "spot_end_time", with: spot.end_time
-      expect { click_on("保存") }
+      expect { click_on("保存") }.to change { Spot.count }.by(1)
+      expect(current_path).to eq group_trip_spots_path(group, trip)
+      expect(page).to have_content "新しい旅行計画を作成しました。"
     end
 
     it "帰宅日の旅行スポットを編集" do
