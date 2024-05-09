@@ -4,7 +4,8 @@ FactoryBot.define do
     date { "2024/2/3" }
     start_time { "7:00" }
     end_time { "8:00" }
-    address { Faker::Address.city }
+    address { "札幌駅" }
+    latitude { "43.068" }
     prefecture { "北海道" }
 
     association :trip
