@@ -1,9 +1,9 @@
 <%= render "modal", title: "承認待ちユーザ一覧" do %>
   <% @permits.each do |permit| %>
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <div>ユーザー名：<%= permit.user.email %></div>
-      <%= button_to "加入許可", group_group_users_path(permit.group, permit_id: permit.id, user_id: permit.user.id ),method: :post, data: { turbo: false },class: "btn btn-outline-secondary" %>
-      <%= button_to "却下", group_group_user_path(permit.group, permit), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary" %>
+      <div>ユーザー名：<%= permit.user.name %></div>
+      <%= button_to "承認", group_group_users_path(permit.group, permit_id: permit.id, user_id: permit.user.id ),method: :post, data: { turbo: false },class: "btn btn-outline-secondary" %>
+      <%= button_to "承認しない", group_group_user_path(permit.group, permit), method: :delete, data: { turbo: false }, class: "btn btn-outline-secondary" %>
     </div>
   <% end %>
 <% end %>
