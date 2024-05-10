@@ -37,17 +37,22 @@ https://otomotabi-app-b0ca4a858a54.herokuapp.com/
 
 | ログイン |　グループ作成 |
 | ---- | ---- |
-| <img width="1440" alt="top6" src="https://github.com/T-K1002/otomotabi/assets/147247751/5ba351e1-4dfb-4655-a837-f54a5dffb3ea"> | <img width="1440" alt="top3" src="https://github.com/T-K1002/otomotabi/assets/147247751/5cfb57b8-9ea2-48d0-83e4-d03be445a457"> |
-|  メールアドレスとパスワードでの認証機能を実装しました。<br>ゲストログイン機能も搭載しています。 | 旅行グループを作成します。<br>既に作成されているグループに、加入申請を送ることもできます。 |
+| <img width="1440" alt="top6" src="https://github.com/T-K1002/otomotabi/assets/147247751/5ba351e1-4dfb-4655-a837-f54a5dffb3ea"> | <video src="https://github.com/T-K1002/otomotabi/assets/147247751/32b7c5f3-e583-4a70-9ff6-78e60f68032e">|
+|  メールアドレスとパスワードでの認証機能を実装しました。<br>ゲストログイン機能も搭載しています。 | 旅行グループを作成します。<br>グループを作成したオーナーのみ、編集・削除ができます。 |
+
+| グループ申請 |　グループ承認 |
+| ---- | ---- |
+| <video src="https://github.com/T-K1002/otomotabi/assets/147247751/1ccc06dc-3bf6-4dd3-8ba4-5b047f9e94b3"> | <video src="https://github.com/T-K1002/otomotabi/assets/147247751/5db381df-70a7-425c-b166-4c6f1c17e46b">　|
+|  既存のグループに、加入申請を送ることができます。<br>グループ名で検索ができます。| グループオーナーが加入申請を承認することで、申請者はグループに参加することができます。 |
 
 | 旅行プラン作成 |　旅行スポット追加 |
 | ---- | ---- |
-| <img width="1440" alt="top4" src="https://github.com/T-K1002/otomotabi/assets/147247751/76ebe9e6-1d8b-4250-8a68-dac55db42f81"> | <img width="1410" alt="top5" src="https://github.com/T-K1002/otomotabi/assets/147247751/c6f95578-820a-429d-b970-6e0cff7c348f"> |
-| 旅行情報を入力し、旅行プランを作成します。<br>旅行のイメージに応じた画像を挿入することができます。 | 旅行プランに、旅行スポットの追加をしていきます。<br>追加した旅行スポットの位置が、map上に表示されます。 |
+| <video src="https://github.com/T-K1002/otomotabi/assets/147247751/3fc12867-8386-4d9e-90e3-b7c7f80a3c42"> |<video src="https://github.com/T-K1002/otomotabi/assets/147247751/c567cc45-0a67-4531-9ec0-bdf5e60b8b72"> |
+| 旅行情報を入力し、旅行プランを作成します。<br>旅行のイメージに応じた画像を挿入することができます。| 旅行プランに、旅行スポットの追加をしていきます。<br>旅行スポットの位置がmap上に表示され、ルート検索ができます。|
 
 | 登録した旅行場所を表示 |　おすすめ旅行先検索 |
 | ---- | ---- |
-| <img width="1419" alt="top1" src="https://github.com/T-K1002/otomotabi/assets/147247751/b871bd4b-a904-4d96-b63c-796caaec4b17"> | <img width="1440" alt="top2" src="https://github.com/T-K1002/otomotabi/assets/147247751/17cf6078-4954-4f84-b236-76693a9e5f36"> |
+| <video src="https://github.com/T-K1002/otomotabi/assets/147247751/8d96c948-a244-4b1a-bc54-43a730178953"> | <video src="https://github.com/T-K1002/otomotabi/assets/147247751/3b71e096-7d86-43c4-960f-65c8783e6749"> |
 | 登録した旅行場所が都道府県ごとに表示されます。<br>訪れた都道府県に日本地図上で色付けがされます。| 登録した旅行スポットを除いたおすすめの旅行先を検索できます。<br>旅行先のジャンルを選択することもできます。 |
 
 ### 機能一覧
@@ -63,7 +68,7 @@ https://otomotabi-app-b0ca4a858a54.herokuapp.com/
 ・旅行スポットのルート検索(Google Maps API)<br>
 ・登録した都道府県を日本地図上で色付け(SVG Japan)<br>
 ・おすすめ旅行スポットの検索(OpenAI API)<br>
-・レスポンシブ対応(スマホ対応済み)<br>
+・レスポンシブ対応<br>
 
 ### 使用技術一覧
 ・Ruby 3.1.4<br>
